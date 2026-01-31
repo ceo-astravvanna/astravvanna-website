@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Astravvanna | Precision without guesswork</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     :root {
       --navy: #0b1f33;
@@ -14,8 +15,8 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #fff;
       color: var(--navy);
+      background: #fff;
     }
     header {
       min-height: 100vh;
@@ -25,38 +26,24 @@
       align-items: center;
       text-align: center;
       padding: 40px 20px;
-      animation: fadeIn 1.2s ease;
     }
-    h1 {
-      font-size: clamp(40px, 6vw, 64px);
-      margin-bottom: 10px;
-      letter-spacing: 1px;
-    }
-    h2 { font-size: 32px; margin-bottom: 20px; }
-    p {
-      max-width: 700px;
-      font-size: 18px;
-      line-height: 1.6;
+    header img {
+      width: 140px;
       margin-bottom: 30px;
     }
-    .btn {
-      padding: 14px 34px;
-      border: 2px solid var(--navy);
-      background: transparent;
-      color: var(--navy);
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    .btn:hover {
-      background: var(--navy);
-      color: #fff;
+    h1 { font-size: 56px; margin-bottom: 10px; }
+    h2 { font-size: 32px; margin-bottom: 20px; }
+    h3 { margin-bottom: 10px; }
+    p {
+      max-width: 750px;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 25px;
     }
     section {
       padding: 100px 20px;
       max-width: 1200px;
       margin: auto;
-      animation: fadeInUp 1s ease;
     }
     .grid {
       display: grid;
@@ -68,13 +55,22 @@
       border: 1px solid #eee;
       border-radius: 10px;
       background: #fff;
-      transition: transform 0.3s ease;
     }
-    .card:hover { transform: translateY(-6px); }
-    .about {
-      background: var(--light);
-      border-radius: 16px;
-      padding: 60px;
+    .product {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 34px;
+      border: 2px solid var(--navy);
+      color: var(--navy);
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: var(--navy);
+      color: #fff;
     }
     footer {
       background: var(--navy);
@@ -82,31 +78,16 @@
       text-align: center;
       padding: 60px 20px;
     }
-    form {
-      max-width: 600px;
-      margin: auto;
-      display: grid;
-      gap: 20px;
-    }
-    input, textarea {
-      padding: 14px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      width: 100%;
-    }
-    @keyframes fadeIn { from {opacity:0} to {opacity:1} }
-    @keyframes fadeInUp { from {opacity:0; transform: translateY(20px)} to {opacity:1; transform:none} }
   </style>
 </head>
+
 <body>
 
 <header>
-  <img src="logo.png" alt="Astravvanna Logo" style="width:140px; margin-bottom:30px;" />
+  <img src="astravvanna logo.png" alt="Astravvanna Logo">
   <h1>Astravvanna</h1>
   <p><strong>Precision without guesswork.</strong></p>
-  <p>Premium supply of construction materials, machinery, and tools — built for projects that demand certainty.</p>
-  <button class="btn">Request a Quote</button>
+  <p>Supplying trusted construction materials, machinery, and tools for projects that demand certainty.</p>
 </header>
 
 <section>
@@ -120,135 +101,62 @@
 </section>
 
 <section>
-  <h2>Why Astravvanna</h2>
-  <p>
-    Astravvanna is built to be more than a supplier. We are a long-term partner focused on quality, knowledge,
-    and dependable service for every project we support.
-  </p>
+  <h2>Our Products</h2>
   <div class="grid">
-    <div class="card">Verified & Trusted Suppliers</div>
-    <div class="card">Quality-Controlled Materials</div>
-    <div class="card">Reliable Delivery Timelines</div>
-    <div class="card">Transparent & Professional Service</div>
+    <img src="nondo.jpeg" class="product" alt="Steel materials">
+    <img src="simba cement.jpeg" class="product" alt="Cement products">
+    <img src="tools.jpeg" class="product" alt="Construction tools">
+    <img src="machine.jpeg" class="product" alt="Construction machinery">
   </div>
 </section>
 
-<section class="about">
-  <h2>Our Mission & Vision</h2>
+<section>
+  <h2>Mission & Vision</h2>
   <div class="grid">
     <div class="card">
       <h3>Our Mission</h3>
       <p>
-        To provide exceptional customer service by supplying reliable construction materials and equipment,
-        while prioritizing industry knowledge, guidance, and long-term value over simple transactions.
+        To provide top-level customer service while prioritizing professional knowledge, guidance,
+        and long-term value over simple selling.
       </p>
     </div>
     <div class="card">
       <h3>Our Vision</h3>
       <p>
-        To contribute to the transformation of Tanzania’s built environment by supporting the development of
-        high-quality residential and commercial buildings that meet global standards — comparable to leading
-        cities such as Dubai.
+        To see Tanzania develop high-quality residential and commercial buildings comparable
+        to leading global cities such as Dubai.
       </p>
     </div>
-  </div>
-</section>
-
-<section class="about">
-  <h2>About Astravvanna</h2>
-  <p>
-    Astravvanna is a construction supply company built on precision, reliability, and transparency. We partner with
-    trusted manufacturers and suppliers to deliver steel, cement, machinery, and professional tools that meet
-    demanding project standards.
-  </p>
-</section>
-
-<section>
-  <h2>Industries We Serve</h2>
-  <div class="grid">
-    <div class="card">Residential Construction</div>
-    <div class="card">Commercial & Industrial Projects</div>
-    <div class="card">Infrastructure & Civil Works</div>
-    <div class="card">Renovation & Maintenance</div>
   </div>
 </section>
 
 <section>
   <h2>Our Core Values</h2>
   <div class="grid">
-    <div class="card"><strong>Integrity</strong><br/>We conduct business with honesty, transparency, and accountability in every partnership.</div>
-    <div class="card"><strong>Quality</strong><br/>We supply materials and equipment that meet recognized standards and project requirements.</div>
-    <div class="card"><strong>Knowledge</strong><br/>We prioritize expertise, guidance, and informed decision-making over transactional selling.</div>
-    <div class="card"><strong>Reliability</strong><br/>We commit to consistency, dependable delivery, and professional service.</div>
+    <div class="card"><strong>Integrity</strong><br>Honest and transparent business practices.</div>
+    <div class="card"><strong>Quality</strong><br>Standard-compliant materials and equipment.</div>
+    <div class="card"><strong>Knowledge</strong><br>Expert guidance beyond selling.</div>
+    <div class="card"><strong>Reliability</strong><br>Consistent delivery and service.</div>
   </div>
 </section>
 
-<section class="about">
-  <h2>Message from the Founder</h2>
+<section>
+  <h2>Contact Us</h2>
   <p>
-    Astravvanna was founded with a clear purpose: to support Tanzania’s construction sector with dependable supply,
-    professional knowledge, and ethical business practices. Our focus is not only on providing materials, but on
-    contributing to projects that shape communities and support long-term development.
+    📍 Moshi Urban, Ghala Road<br>
+    📞 +255 749 410 189<br>
+    ✉️ astravvanna@gmail.com
   </p>
-</section>
-
-<section>
-  <h2>Compliance & Ethics</h2>
-  <p style="max-width:800px; margin:auto;">
-    Astravvanna operates in accordance with applicable laws, industry regulations, and ethical business standards.
-    We maintain transparent sourcing practices, fair dealings with partners, and a commitment to responsible
-    business conduct in all our operations.
-  </p>
-</section>
-
-<section>
-  <h2>Company Profile</h2>
-  <p style="text-align:center; max-width:800px; margin:auto;">
-    Astravvanna maintains a formal company profile for banks, financial institutions, and strategic partners.
-  </p>
-  <div style="text-align:center; margin-top:30px;">
-    <a href="Astravvanna_Company_Profile.pdf" class="btn" download>Download Company Profile</a>
-  </div>
-</section>
-
-<section>
-  <h2>Contact Us</h2></h2>
-  <p style="text-align:center; max-width:700px; margin:auto;">
-    📍 <strong>Moshi Urban, Ghala Road</strong><br/>
-    📞 <strong>+255 749 410 189</strong><br/>
-    ✉️ <strong>astravvanna@gmail.com</strong>
-  </p>
-  <form>
-    <input type="text" placeholder="Your Name" required />
-    <input type="email" placeholder="Email Address" required />
-    <textarea rows="5" placeholder="Tell us what you need"></textarea>
-    <button class="btn" type="submit">Send Request</button>
-  </form>
-</section>
-
-<section>
-  <h2>Our Products</h2>
-  <div class="grid">
-    <img src="photo-steel.jpg" alt="Construction steel materials" style="width:100%; border-radius:10px;" />
-    <img src="photo-cement.jpg" alt="Cement and building materials" style="width:100%; border-radius:10px;" />
-    <img src="photo-tools.jpg" alt="Construction tools and equipment" style="width:100%; border-radius:10px;" />
-    <img src="photo-machinery.jpg" alt="Construction machinery" style="width:100%; border-radius:10px;" />
-  </div>
+  <p>Instagram · Facebook · TikTok · Snapchat: <strong>Astravvanna</strong></p>
+  <a href="Astravvanna_Company_Profile.pdf" class="btn" download>Download Company Profile</a>
 </section>
 
 <footer>
   <p><strong>Astravvanna</strong></p>
   <p>Precision without guesswork.</p>
-  <p>📍 Moshi Urban, Ghala Road</p>
-  <p>📞 +255 749 410 189 | ✉️ astravvanna@gmail.com</p>
-  <p>
-    Follow us: 
-    <a href="https://instagram.com/astravvanna" target="_blank" style="color:#c9a24d;">Instagram</a> ·
-    <a href="https://facebook.com/astravvanna" target="_blank" style="color:#c9a24d;">Facebook</a> ·
-    <a href="https://tiktok.com/@astravvanna" target="_blank" style="color:#c9a24d;">TikTok</a> ·
-    <a href="https://snapchat.com/add/astravvanna" target="_blank" style="color:#c9a24d;">Snapchat</a>
-  </p>
+  <p>Moshi Urban, Ghala Road</p>
 </footer>
 
 </body>
 </html>
+
