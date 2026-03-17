@@ -1,232 +1,1404 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Astravvanna</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Astravvanna | Precision without guesswork</title>
+<meta name="description" content="Astravvanna supplies construction materials, steel, cement, machinery, and tools. Estimate materials with our contractor calculator." />
 <style>
-body{font-family:Segoe UI;margin:0;background:#0b1f33;color:white;}
-header{text-align:center;padding:100px;background:#142c47;}
-header h1{font-size:48px}
-header p{color:#c9a24d}
+  :root{
+    --navy:#0b1f33;
+    --navy-2:#142c47;
+    --navy-3:#1b395b;
+    --gold:#c9a24d;
+    --gold-2:#e0bf73;
+    --light:#f7f8fb;
+    --white:#ffffff;
+    --muted:#cfd8e3;
+    --text:#10233a;
+    --success:#148a4b;
+    --danger:#c0392b;
+    --shadow:0 18px 50px rgba(0,0,0,.18);
+    --radius:16px;
+  }
 
-section{padding:60px 20px;max-width:1100px;margin:auto}
-h2{text-align:center;margin-bottom:30px}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:Segoe UI,Roboto,Arial,sans-serif;
+    background:var(--light);
+    color:var(--text);
+  }
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.card{background:#142c47;padding:20px;border:1px solid #c9a24d;border-radius:10px}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%;display:block}
 
-.calculator{background:#142c47;padding:30px;border-radius:10px}
-.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
-.tab{padding:10px;border:2px solid #c9a24d;color:#c9a24d;cursor:pointer}
-.tab.active{background:#c9a24d;color:#0b1f33}
+  /* NAV */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 28px;
+    background:rgba(11,31,51,.62);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav-left{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .nav-left img{
+    height:40px;
+    width:auto;
+  }
+  .brand-text{
+    color:#fff;
+    font-weight:700;
+    letter-spacing:.3px;
+  }
+  .nav-links{
+    display:flex;
+    flex-wrap:wrap;
+    gap:18px;
+  }
+  .nav-links a{
+    color:#fff;
+    font-size:14px;
+    opacity:.95;
+  }
+  .nav-links a:hover{color:var(--gold)}
 
-.section{display:none}
-.section.active{display:block}
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    overflow:hidden;
+    background:var(--navy);
+  }
+  .hero video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(rgba(11,31,51,.82),rgba(11,31,51,.72)),
+      radial-gradient(circle at 20% 20%, rgba(201,162,77,.22), transparent 28%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    min-height:100vh;
+    max-width:1180px;
+    margin:auto;
+    padding:120px 24px 80px;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:36px;
+    align-items:center;
+  }
+  .hero-copy h1{
+    color:#fff;
+    font-size:clamp(42px,7vw,78px);
+    line-height:1;
+    margin:0 0 14px;
+  }
+  .hero-copy .sub{
+    color:var(--gold-2);
+    font-size:clamp(18px,2.2vw,28px);
+    min-height:34px;
+    margin-bottom:18px;
+    font-weight:600;
+  }
+  .hero-copy p{
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.7;
+    max-width:650px;
+    margin:0 0 28px;
+  }
+  .hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 22px;
+    border-radius:12px;
+    font-weight:700;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:.28s ease;
+  }
+  .btn-primary{
+    background:var(--gold);
+    color:var(--navy);
+  }
+  .btn-primary:hover{transform:translateY(-2px); background:var(--gold-2)}
+  .btn-secondary{
+    background:transparent;
+    color:#fff;
+    border-color:rgba(255,255,255,.75);
+  }
+  .btn-secondary:hover{background:#fff;color:var(--navy)}
+  .hero-card{
+    position:relative;
+    z-index:2;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:24px;
+    padding:24px;
+    box-shadow:var(--shadow);
+  }
+  .hero-stats{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+  }
+  .stat{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    padding:18px;
+  }
+  .stat h3{
+    color:#fff;
+    margin:0 0 8px;
+    font-size:26px;
+  }
+  .stat p{
+    margin:0;
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.5;
+  }
 
-input{padding:10px;margin:5px;border:2px solid #c9a24d;background:#0b1f33;color:white;border-radius:6px}
+  /* SECTION BASICS */
+  section{
+    max-width:1180px;
+    margin:auto;
+    padding:84px 24px;
+  }
+  .section-title{
+    text-align:center;
+    margin-bottom:14px;
+    color:var(--navy);
+    font-size:clamp(28px,4vw,40px);
+  }
+  .section-lead{
+    text-align:center;
+    color:#516274;
+    max-width:760px;
+    margin:0 auto 38px;
+    line-height:1.7;
+  }
 
-button{padding:10px 16px;background:#c9a24d;border:none;border-radius:6px;cursor:pointer}
+  /* CARDS / GRID */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:22px;
+  }
+  .card{
+    background:#fff;
+    border-radius:18px;
+    padding:26px;
+    box-shadow:0 10px 30px rgba(11,31,51,.08);
+    border:1px solid #edf0f4;
+    transition:.32s ease;
+  }
+  .card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 42px rgba(11,31,51,.14);
+  }
+  .card.gold-top{border-top:4px solid var(--gold)}
+  .card h3{
+    margin:0 0 12px;
+    color:var(--navy);
+    font-size:20px;
+  }
+  .card p{
+    margin:0;
+    color:#556575;
+    line-height:1.65;
+  }
 
-.results{margin-top:10px;padding:10px;border:1px solid #c9a24d;border-radius:6px}
+  /* PRODUCT CAROUSEL */
+  .carousel-wrap{
+    overflow:hidden;
+    position:relative;
+  }
+  .carousel-track{
+    display:flex;
+    gap:20px;
+    width:max-content;
+    animation:scrollProducts 34s linear infinite;
+    padding:8px 0;
+  }
+  .carousel-wrap:hover .carousel-track{animation-play-state:paused}
+  .product-box{
+    min-width:220px;
+    height:220px;
+    border-radius:18px;
+    background:linear-gradient(145deg,#fff,#f1f4f8);
+    border:1px solid #e6ebf0;
+    box-shadow:0 10px 24px rgba(11,31,51,.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    color:#657585;
+    transition:.3s ease;
+  }
+  .product-box:hover{
+    transform:scale(1.04);
+    color:var(--navy);
+    border-color:var(--gold);
+  }
+  @keyframes scrollProducts{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-50%)}
+  }
 
-footer{text-align:center;padding:30px;background:#142c47}
+  /* PAYMENT */
+  .payment-area{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+    align-items:start;
+  }
+  .flip{
+    perspective:1000px;
+  }
+  .flip-inner{
+    position:relative;
+    min-height:280px;
+    transform-style:preserve-3d;
+    transition:transform .8s;
+  }
+  .flip:hover .flip-inner{transform:rotateY(180deg)}
+  .flip-face{
+    position:absolute;
+    inset:0;
+    backface-visibility:hidden;
+    border-radius:20px;
+    padding:28px;
+    box-shadow:var(--shadow);
+  }
+  .flip-front{
+    background:#fff;
+    border:1px solid #e8edf4;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+  .flip-front h3{
+    margin:0;
+    color:var(--navy);
+    font-size:28px;
+  }
+  .flip-back{
+    transform:rotateY(180deg);
+    background:var(--navy);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .payment-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    justify-content:center;
+  }
+  .paybox{
+    min-width:220px;
+    padding:18px;
+    border-radius:14px;
+    background:var(--gold);
+    color:#fff;
+    text-align:center;
+    font-weight:700;
+    box-shadow:0 12px 26px rgba(0,0,0,.2);
+    transition:.28s ease;
+  }
+  .paybox:hover{transform:translateY(-6px)}
+  .paybox small{
+    display:block;
+    margin-top:6px;
+    font-weight:500;
+    opacity:.95;
+  }
+
+  /* TRUST */
+  .trust-box{
+    min-height:220px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .trust-box .label{
+    display:inline-block;
+    background:rgba(201,162,77,.1);
+    color:var(--gold);
+    padding:8px 12px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:12px;
+  }
+
+  /* PRO CENTER / RESOURCES */
+  .pro-banner{
+    background:linear-gradient(135deg,var(--navy),var(--navy-3));
+    color:#fff;
+    border-radius:24px;
+    padding:32px;
+    box-shadow:var(--shadow);
+  }
+  .pro-banner h3{margin:0 0 12px;font-size:28px}
+  .pro-banner p{margin:0 0 18px;line-height:1.7;color:#d8e0ea}
+
+  /* MAP */
+  .map{
+    overflow:hidden;
+    border-radius:22px;
+    height:420px;
+    box-shadow:0 16px 34px rgba(11,31,51,.12);
+  }
+  .map iframe{width:100%;height:100%;border:0}
+
+  /* CALCULATOR */
+  .calc-shell{
+    background:linear-gradient(180deg,var(--navy-2),var(--navy));
+    color:#fff;
+    border-radius:26px;
+    padding:30px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(201,162,77,.22);
+  }
+  .calc-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .calc-top h3{
+    margin:0;
+    font-size:28px;
+  }
+  .calc-top p{
+    margin:6px 0 0;
+    color:#d7e0eb;
+  }
+  .calc-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .calc-tab{
+    padding:10px 16px;
+    border:2px solid var(--gold);
+    color:var(--gold);
+    background:transparent;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+  }
+  .calc-tab.active{
+    background:var(--gold);
+    color:var(--navy);
+  }
+  .calc-panel{display:none}
+  .calc-panel.active{display:block}
+
+  .calc-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    margin-bottom:18px;
+  }
+  .field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .field label{
+    color:#d8e0ea;
+    font-size:14px;
+    font-weight:600;
+  }
+  .field input,
+  .field select{
+    width:100%;
+    padding:13px 14px;
+    border-radius:12px;
+    border:2px solid rgba(201,162,77,.9);
+    background:#0e2035;
+    color:#fff;
+    outline:none;
+  }
+  .field input::placeholder{color:#9db0c4}
+  .calc-actions{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:12px;
+  }
+  .calc-btn{
+    padding:12px 20px;
+    border-radius:12px;
+    border:none;
+    font-weight:800;
+    cursor:pointer;
+  }
+  .calc-btn.primary{
+    background:var(--gold);
+    color:var(--navy);
+  }
+  .calc-btn.secondary{
+    background:#fff;
+    color:var(--navy);
+  }
+  .calc-btn.ghost{
+    background:transparent;
+    color:#fff;
+    border:2px solid rgba(255,255,255,.45);
+  }
+  .calc-result{
+    background:#0e2035;
+    border:1px solid rgba(201,162,77,.34);
+    border-radius:16px;
+    padding:18px;
+    color:#fff;
+    margin-top:14px;
+    min-height:80px;
+    line-height:1.8;
+  }
+  .summary-box{
+    margin-top:28px;
+    background:#fff;
+    color:var(--navy);
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 12px 28px rgba(0,0,0,.14);
+  }
+  .summary-box h4{
+    margin:0 0 12px;
+    font-size:22px;
+  }
+  .summary-box p{
+    margin:0;
+    line-height:1.8;
+  }
+
+  /* QUOTE */
+  .quote-print{
+    display:none;
+    margin-top:24px;
+    background:#fff;
+    color:#000;
+    border-radius:18px;
+    padding:28px;
+  }
+  .quote-print h3{margin-top:0}
+  .divider{
+    height:1px;
+    background:#d9d9d9;
+    margin:16px 0;
+  }
+
+  /* CONTACT */
+  .contact-box{
+    background:#fff;
+    border-radius:22px;
+    padding:28px;
+    box-shadow:0 12px 30px rgba(11,31,51,.1);
+  }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .contact-form{
+    display:grid;
+    gap:14px;
+  }
+  .contact-form input,
+  .contact-form textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #d9e1ea;
+    border-radius:12px;
+    font:inherit;
+  }
+  .contact-form textarea{min-height:130px; resize:vertical}
+
+  /* FOOTER */
+  footer{
+    background:var(--navy);
+    color:#fff;
+    text-align:center;
+    padding:40px 20px;
+    margin-top:28px;
+  }
+
+  /* ANIMATION */
+  .reveal{
+    opacity:0;
+    transform:translateY(36px);
+    transition:all .8s ease;
+  }
+  .reveal.show{
+    opacity:1;
+    transform:none;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width:900px){
+    .hero-content,
+    .payment-area,
+    .contact-grid{
+      grid-template-columns:1fr;
+    }
+    .hero-copy{
+      text-align:center;
+    }
+    .hero-actions{justify-content:center}
+    nav{
+      padding:14px 18px;
+    }
+    .nav-links{
+      display:none;
+    }
+  }
+
+  @media print{
+    body *{visibility:hidden}
+    .quote-print, .quote-print *{
+      visibility:visible;
+    }
+    .quote-print{
+      display:block !important;
+      position:absolute;
+      left:0; top:0;
+      width:100%;
+      box-shadow:none;
+      border-radius:0;
+    }
+  }
 </style>
 </head>
-
 <body>
 
-<header>
-<h1>Astravvanna</h1>
-<p>Precision without guesswork</p>
+<nav>
+  <div class="nav-left">
+    <img src="astravvanna logo.png" alt="Astravvanna logo">
+    <div class="brand-text">Astravvanna</div>
+  </div>
+  <div class="nav-links">
+    <a href="#supply">Supply</a>
+    <a href="#calculator">Calculator</a>
+    <a href="#payment">Payment</a>
+    <a href="#pro-center">Pro Center</a>
+    <a href="#resources">Resources</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <video autoplay muted loop playsinline>
+    <source src="astravvanna video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <div class="hero-copy reveal">
+      <h1>Astravvanna</h1>
+      <div class="sub" id="heroSub">Precision without guesswork.</div>
+      <p>
+        Premium supply of construction materials, steel, cement, machinery, and tools — with contractor-focused estimating tools that help projects move from calculation to execution.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#calculator">Open Calculator</a>
+        <a class="btn btn-secondary" href="#contact">Request a Quote</a>
+      </div>
+    </div>
+
+    <div class="hero-card reveal">
+      <div class="hero-stats">
+        <div class="stat">
+          <h3>Supply</h3>
+          <p>Steel, cement, pipes, square tubes, machinery, tools, and building materials.</p>
+        </div>
+        <div class="stat">
+          <h3>Estimate</h3>
+          <p>Project-focused calculators for rebar, concrete, columns, beams, pipes, and roofs.</p>
+        </div>
+        <div class="stat">
+          <h3>Trust</h3>
+          <p>Business-ready structure for contractors, suppliers, and financial institutions.</p>
+        </div>
+        <div class="stat">
+          <h3>Location</h3>
+          <p>Moshi Urban, Ghala Road — accessible support for serious project execution.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
-<section>
-<h2>What We Supply</h2>
-<div class="grid">
-<div class="card">Steel Materials</div>
-<div class="card">Cement</div>
-<div class="card">Machinery</div>
-<div class="card">Tools</div>
-</div>
+<section id="supply">
+  <h2 class="section-title reveal">What We Supply</h2>
+  <p class="section-lead reveal">Astravvanna supports residential, commercial, and infrastructure projects with reliable access to materials and tools that matter on site.</p>
+  <div class="grid">
+    <div class="card gold-top reveal"><h3>Steel & Structural Materials</h3><p>Rebars, pipes, square tubes, sections, and general steel supply for fabrication and structural works.</p></div>
+    <div class="card gold-top reveal"><h3>Cement & Building Materials</h3><p>Cement, aggregates, and related materials required for concrete, blockwork, and finishing stages.</p></div>
+    <div class="card gold-top reveal"><h3>Machinery & Equipment</h3><p>Practical machine and equipment support for contractors, builders, and project teams.</p></div>
+    <div class="card gold-top reveal"><h3>Tools & Site Essentials</h3><p>Professional tools and essential hardware to keep teams productive on active construction sites.</p></div>
+  </div>
 </section>
 
 <section>
-<h2>Mission & Vision</h2>
-<div class="grid">
-<div class="card">Provide top customer service and knowledge</div>
-<div class="card">Build Tanzania like Dubai standard</div>
-</div>
+  <h2 class="section-title reveal">Products</h2>
+  <p class="section-lead reveal">A clean flowing product strip. You can later replace each box with real product photos.</p>
+  <div class="carousel-wrap reveal">
+    <div class="carousel-track">
+      <div class="product-box">Steel Products</div>
+      <div class="product-box">Cement</div>
+      <div class="product-box">Binding Wire</div>
+      <div class="product-box">Square Tubes</div>
+      <div class="product-box">Round Pipes</div>
+      <div class="product-box">Power Tools</div>
+      <div class="product-box">Safety Gear</div>
+      <div class="product-box">Mixers</div>
+      <div class="product-box">Hardware</div>
+      <div class="product-box">Site Equipment</div>
+
+      <div class="product-box">Steel Products</div>
+      <div class="product-box">Cement</div>
+      <div class="product-box">Binding Wire</div>
+      <div class="product-box">Square Tubes</div>
+      <div class="product-box">Round Pipes</div>
+      <div class="product-box">Power Tools</div>
+      <div class="product-box">Safety Gear</div>
+      <div class="product-box">Mixers</div>
+      <div class="product-box">Hardware</div>
+      <div class="product-box">Site Equipment</div>
+    </div>
+  </div>
 </section>
 
 <section>
-<h2>Construction Calculator</h2>
+  <h2 class="section-title reveal">Mission & Vision</h2>
+  <div class="grid">
+    <div class="card gold-top reveal">
+      <h3>Our Mission</h3>
+      <p>To provide exceptional customer service by supplying dependable construction materials and equipment while prioritizing knowledge, guidance, and long-term value over simple selling.</p>
+    </div>
+    <div class="card gold-top reveal">
+      <h3>Our Vision</h3>
+      <p>To support Tanzania’s built environment by contributing to residential and commercial development that aspires to world-class standards.</p>
+    </div>
+  </div>
+</section>
 
-<div class="calculator">
+<section id="payment">
+  <h2 class="section-title reveal">Payment Options</h2>
+  <div class="payment-area">
+    <div class="flip reveal">
+      <div class="flip-inner">
+        <div class="flip-face flip-front">
+          <div>
+            <h3>Payment Options</h3>
+            <p style="margin:10px 0 0;color:#546575;line-height:1.7">Hover over this card to view the official payment channels for Astravvanna.</p>
+          </div>
+        </div>
+        <div class="flip-face flip-back">
+          <div class="payment-row">
+            <div class="paybox">
+              CRDB BANK
+              <small>1020 1521 26 8</small>
+              <small>ASTRAVVANNA SUPPLIES</small>
+            </div>
+            <div class="paybox">
+              LIPA NAMBA CRDB
+              <small>1110 87 57 6</small>
+              <small>ASTRAVVANNA SUPPLIES</small>
+            </div>
+            <div class="paybox">
+              LIPA NAMBA VODA
+              <small>35 23 38 39</small>
+              <small>ANTHONY APOLLO HUGO</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="tabs">
-<button class="tab active" onclick="tab('rebar')">Rebar</button>
-<button class="tab" onclick="tab('concrete')">Concrete</button>
-<button class="tab" onclick="tab('column')">Column</button>
-<button class="tab" onclick="tab('tube')">Square Tube</button>
-<button class="tab" onclick="tab('pipe')">Pipe</button>
-<button class="tab" onclick="tab('beam')">Beam</button>
-<button class="tab" onclick="tab('roof')">Roof</button>
-</div>
+    <div class="card gold-top reveal">
+      <h3>Payment Confidence</h3>
+      <p>Payment clarity is part of trust. Every project estimate can be aligned with official payment channels for cleaner contractor approvals and faster execution.</p>
+    </div>
+  </div>
+</section>
 
-<!-- REBAR -->
-<div id="rebar" class="section active">
-<input id="d" placeholder="Diameter mm">
-<input id="l" placeholder="Length m">
-<input id="n" placeholder="Bars">
-<button onclick="rebar()">Calculate</button>
-<div id="r" class="results"></div>
-</div>
+<section id="pro-center">
+  <div class="pro-banner reveal">
+    <h3>Pro Center</h3>
+    <p>Dedicated support for contractors, large buyers, and project teams that need consistency, volume coordination, and informed material guidance — not just basic supply.</p>
+    <a class="btn btn-primary" href="#calculator">Start Estimating</a>
+  </div>
+</section>
 
-<!-- CONCRETE -->
-<div id="concrete" class="section">
-<input id="cl" placeholder="Length m">
-<input id="cw" placeholder="Width m">
-<input id="cd" placeholder="Depth m">
-<button onclick="concrete()">Calculate</button>
-<div id="cr" class="results"></div>
-</div>
-
-<!-- COLUMN -->
-<div id="column" class="section">
-<input id="ch" placeholder="Height">
-<input id="cw2" placeholder="Width">
-<input id="cd2" placeholder="Depth">
-<input id="cn" placeholder="No. columns">
-<button onclick="column()">Calculate</button>
-<div id="colr" class="results"></div>
-</div>
-
-<!-- TUBE -->
-<div id="tube" class="section">
-<input id="th" placeholder="Height mm">
-<input id="tw" placeholder="Width mm">
-<input id="tt" placeholder="Thickness mm">
-<input id="tl" placeholder="Length m">
-<button onclick="tube()">Calculate</button>
-<div id="tr" class="results"></div>
-</div>
-
-<!-- PIPE -->
-<div id="pipe" class="section">
-<input id="pd" placeholder="Diameter mm">
-<input id="pt" placeholder="Thickness mm">
-<input id="pl" placeholder="Length m">
-<button onclick="pipe()">Calculate</button>
-<div id="pr" class="results"></div>
-</div>
-
-<!-- BEAM -->
-<div id="beam" class="section">
-<input id="bl" placeholder="Length m">
-<input id="bn" placeholder="Beams">
-<button onclick="beam()">Estimate</button>
-<div id="br" class="results"></div>
-</div>
-
-<!-- ROOF -->
-<div id="roof" class="section">
-<input id="rl" placeholder="Length m">
-<input id="rw" placeholder="Width m">
-<button onclick="roof()">Estimate</button>
-<div id="rr" class="results"></div>
-</div>
-
-</div>
+<section id="resources">
+  <h2 class="section-title reveal">Resources & Learning</h2>
+  <div class="grid">
+    <div class="card gold-top reveal"><h3>Cement Quantity Estimation</h3><p>Understand how slab and column volumes translate into practical bag estimates and aggregates.</p></div>
+    <div class="card gold-top reveal"><h3>Steel Reinforcement Basics</h3><p>Use rebar size, length, and quantity to estimate weight and bar pieces more accurately.</p></div>
+    <div class="card gold-top reveal"><h3>Tube & Pipe Guidance</h3><p>Estimate square tubes and round pipes by size, thickness, and length using supplier-friendly formulas.</p></div>
+  </div>
 </section>
 
 <section>
-<h2>Material Summary</h2>
-<div id="summary" class="results">No data yet</div>
-<button onclick="summary()">Generate</button>
-<button onclick="send()">Send Estimate</button>
+  <h2 class="section-title reveal">Trust Signals</h2>
+  <div class="grid">
+    <div class="card trust-box gold-top reveal"><span class="label">Certificate</span><h3>Tax Certificate</h3><p>Verified tax compliance placeholder — insert certificate image later.</p></div>
+    <div class="card trust-box gold-top reveal"><span class="label">License</span><h3>Business License</h3><p>Authorized operation placeholder — insert license image later.</p></div>
+    <div class="card trust-box gold-top reveal"><span class="label">Registration</span><h3>BRELA Registration</h3><p>Registered business placeholder — replace with official image/document later.</p></div>
+    <div class="card trust-box gold-top reveal"><span class="label">Registry</span><h3>Registry Extract</h3><p>Official registry extract placeholder for enhanced financial-institution confidence.</p></div>
+  </div>
+</section>
+
+<section id="calculator">
+  <h2 class="section-title reveal">Astravvanna Construction Calculator</h2>
+  <p class="section-lead reveal">This is the competitive x-factor: a contractor-ready estimation engine built directly into your business website.</p>
+
+  <div class="calc-shell reveal">
+    <div class="calc-top">
+      <div>
+        <h3>Construction Pro Estimator</h3>
+        <p>Use the calculators below, then generate a clean material summary and email estimate.</p>
+      </div>
+    </div>
+
+    <div class="calc-tabs">
+      <button class="calc-tab active" data-tab="calc-rebar">Rebar</button>
+      <button class="calc-tab" data-tab="calc-concrete">Concrete</button>
+      <button class="calc-tab" data-tab="calc-column">Column</button>
+      <button class="calc-tab" data-tab="calc-tube">Square Tube</button>
+      <button class="calc-tab" data-tab="calc-pipe">Round Pipe</button>
+      <button class="calc-tab" data-tab="calc-beam">Beam</button>
+      <button class="calc-tab" data-tab="calc-roof">Roof</button>
+    </div>
+
+    <!-- REBAR -->
+    <div id="calc-rebar" class="calc-panel active">
+      <div class="calc-grid">
+        <div class="field">
+          <label>Rebar Size (mm)</label>
+          <select id="rebarSize">
+            <option value="8">8 mm</option>
+            <option value="10">10 mm</option>
+            <option value="12">12 mm</option>
+            <option value="16">16 mm</option>
+            <option value="20">20 mm</option>
+            <option value="25">25 mm</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Length per Bar (m)</label>
+          <input id="barLength" type="number" step="any" placeholder="e.g. 2.7">
+        </div>
+        <div class="field">
+          <label>Number of Bars Needed</label>
+          <input id="barCount" type="number" step="1" placeholder="e.g. 16">
+        </div>
+        <div class="field">
+          <label>Supply Length</label>
+          <select id="supplyLength">
+            <option value="6">6 m</option>
+            <option value="9">9 m</option>
+            <option value="12" selected>12 m</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Waste %</label>
+          <select id="rebarWaste">
+            <option value="0">0%</option>
+            <option value="0.05">5%</option>
+            <option value="0.10">10%</option>
+            <option value="0.15">15%</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-actions">
+        <button class="calc-btn primary" onclick="calcRebar()">Calculate Rebar</button>
+      </div>
+      <div id="rebarResult" class="calc-result">No calculation yet.</div>
+    </div>
+
+    <!-- CONCRETE -->
+    <div id="calc-concrete" class="calc-panel">
+      <div class="calc-grid">
+        <div class="field">
+          <label>Length (m)</label>
+          <input id="cLength" type="number" step="any" placeholder="e.g. 8">
+        </div>
+        <div class="field">
+          <label>Width (m)</label>
+          <input id="cWidth" type="number" step="any" placeholder="e.g. 5">
+        </div>
+        <div class="field">
+          <label>Thickness (m)</label>
+          <input id="cDepth" type="number" step="any" placeholder="e.g. 0.15">
+        </div>
+        <div class="field">
+          <label>Concrete Grade</label>
+          <select id="grade">
+            <option value="7">M20</option>
+            <option value="7.5">M25</option>
+            <option value="8">M30</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Waste %</label>
+          <select id="concreteWaste">
+            <option value="0">0%</option>
+            <option value="0.05">5%</option>
+            <option value="0.10">10%</option>
+            <option value="0.15">15%</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-actions">
+        <button class="calc-btn primary" onclick="calcConcrete()">Calculate Concrete</button>
+      </div>
+      <div id="concreteResult" class="calc-result">No calculation yet.</div>
+    </div>
+
+    <!-- COLUMN -->
+    <div id="calc-column" class="calc-panel">
+      <div class="calc-grid">
+        <div class="field">
+          <label>Height (m)</label>
+          <input id="colH" type="number" step="any" placeholder="e.g. 3">
+        </div>
+        <div class="field">
+          <label>Width (m)</label>
+          <input id="colW" type="number" step="any" placeholder="e.g. 0.3">
+        </div>
+        <div class="field">
+          <label>Depth (m)</label>
+          <input id="colD" type="number" step="any" placeholder="e.g. 0.3">
+        </div>
+        <div class="field">
+          <label>Number of Columns</label>
+          <input id="colN" type="number" step="1" placeholder="e.g. 4">
+        </div>
+      </div>
+      <div class="calc-actions">
+        <button class="calc-btn primary" onclick="calcColumn()">Calculate Column</button>
+      </div>
+      <div id="columnResult" class="calc-result">No calculation yet.</div>
+    </div>
+
+    <!-- TUBE -->
+    <div id="calc-tube" class="calc-panel">
+      <div class="calc-grid">
+        <div class="field">
+          <label>Height (mm)</label>
+          <input id="sqH" type="number" step="any" placeholder="e.g. 25">
+        </div>
+        <div class="field">
+          <label>Width (mm)</label>
+          <input id="sqW" type="number" step="any" placeholder="e.g. 25">
+        </div>
+        <div class="field">
+          <label>Thickness (mm)</label>
+          <input id="sqT" type="number" step="any" placeholder="e.g. 1">
+        </div>
+        <div class="field">
+          <label>Length (m)</label>
+          <input id="sqL" type="number" step="any" placeholder="e.g. 6">
+        </div>
+      </div>
+      <div class="calc-actions">
+        <button class="calc-btn primary" onclick="calcTube()">Calculate Square Tube</button>
+      </div>
+      <div id="tubeResult" class="calc-result">No calculation yet.</div>
+    </div>
+
+    <!-- PIPE -->
+    <div id="calc-pipe" class="calc-panel">
+      <div class="calc-grid">
+        <div class="field">
+          <label>Outer Diameter (mm)</label>
+          <input id="pipeD" type="number" step="any" placeholder="e.g. 25">
+        </div>
+        <div class="field">
+          <label>Thickness (mm)</label>
+          <input id="pipeT" type="number" step="any" placeholder="e.g. 1.5">
+        </div>
+        <div class="field">
+          <label>Length (m)</label>
+          <input id="pipeL" type="number" step="any" placeholder="e.g. 6">
+        </div>
+        <div class="field">
+          <label>Quantity</label>
+          <input id="pipeQ" type="number" step="1" placeholder="e.g. 4">
+        </div>
+      </div>
+      <div class="calc-actions">
+        <button class="calc-btn primary" onclick="calcPipe()">Calculate Pipe</button>
+      </div>
+      <div id="pipeResult" class="calc-result">No calculation yet.</div>
+    </div>
+
+    <!-- BEAM -->
+    <div id="calc-beam" class="calc-panel">
+      <div class="calc-grid">
+        <div class="field">
+          <label>Beam Length (m)</label>
+          <input id="beamL" type="number" step="any" placeholder="e.g. 4">
+        </div>
+        <div class="field">
+          <label>Top Bars</label>
+          <input id="topBars" type="number" step="1" placeholder="e.g. 2">
+        </div>
+        <div class="field">
+          <label>Bottom Bars</label>
+          <input id="bottomBars" type="number" step="1" placeholder="e.g. 2">
+        </div>
+        <div class="field">
+          <label>Stirrups Count</label>
+          <input id="stirrups" type="number" step="1" placeholder="e.g. 20">
+        </div>
+      </div>
+      <div class="calc-actions">
+        <button class="calc-btn primary" onclick="calcBeam()">Estimate Beam Reinforcement</button>
+      </div>
+      <div id="beamResult" class="calc-result">No calculation yet.</div>
+    </div>
+
+    <!-- ROOF -->
+    <div id="calc-roof" class="calc-panel">
+      <div class="calc-grid">
+        <div class="field">
+          <label>Roof Length (m)</label>
+          <input id="roofL" type="number" step="any" placeholder="e.g. 12">
+        </div>
+        <div class="field">
+          <label>Roof Width (m)</label>
+          <input id="roofW" type="number" step="any" placeholder="e.g. 8">
+        </div>
+        <div class="field">
+          <label>Truss Spacing (m)</label>
+          <input id="spacing" type="number" step="any" placeholder="e.g. 1.5">
+        </div>
+      </div>
+      <div class="calc-actions">
+        <button class="calc-btn primary" onclick="calcRoof()">Estimate Roof</button>
+      </div>
+      <div id="roofResult" class="calc-result">No calculation yet.</div>
+    </div>
+
+    <div class="calc-actions" style="margin-top:26px">
+      <button class="calc-btn secondary" onclick="generateSummary()">Generate Material Summary</button>
+      <button class="calc-btn secondary" onclick="sendEstimate()">Send Estimate</button>
+      <button class="calc-btn ghost" onclick="buildQuote()">Build Printable Quote</button>
+      <button class="calc-btn ghost" onclick="window.print()">Download / Print Quote</button>
+    </div>
+
+    <div id="summary" class="summary-box">
+      <h4>Material Summary</h4>
+      <p>No calculations yet.</p>
+    </div>
+
+    <div id="quotePrint" class="quote-print"></div>
+  </div>
 </section>
 
 <section>
-<h2>Contact</h2>
-<p style="text-align:center">
-📍 Moshi Urban<br>
-📞 +255 749 410 189<br>
-✉️ astravvanna@gmail.com
-</p>
+  <h2 class="section-title reveal">Our Location</h2>
+  <div class="map reveal">
+    <iframe src="https://maps.google.com/maps?q=Moshi%20Urban%20Tanzania&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+</section>
+
+<section id="contact">
+  <h2 class="section-title reveal">Contact</h2>
+  <div class="contact-box reveal">
+    <div class="contact-grid">
+      <div>
+        <h3 style="margin-top:0;color:var(--navy)">Astravvanna</h3>
+        <p style="line-height:1.8;color:#516274;margin:0 0 14px">
+          Precision without guesswork.<br>
+          Moshi Urban, Ghala Road<br>
+          +255 749 410 189<br>
+          astravvanna@gmail.com
+        </p>
+      </div>
+      <form class="contact-form" onsubmit="openMailQuote(event)">
+        <input id="contactName" type="text" placeholder="Your Name" required>
+        <input id="contactEmail" type="email" placeholder="Your Email" required>
+        <textarea id="contactMessage" placeholder="Tell us what you need" required></textarea>
+        <button class="btn btn-primary" type="submit">Send Request</button>
+      </form>
+    </div>
+  </div>
 </section>
 
 <footer>
-<p>Astravvanna</p>
+  <p><strong>Astravvanna</strong></p>
+  <p>Precision without guesswork.</p>
+  <p>Moshi Urban, Ghala Road | +255 749 410 189 | astravvanna@gmail.com</p>
 </footer>
 
 <script>
+  // Hero subtitle rotation
+  const heroMessages = [
+    "Precision without guesswork.",
+    "Building with certainty.",
+    "Supplying confidence for every project."
+  ];
+  let heroIndex = 0;
+  setInterval(() => {
+    heroIndex = (heroIndex + 1) % heroMessages.length;
+    document.getElementById("heroSub").textContent = heroMessages[heroIndex];
+  }, 3000);
 
-let data={}
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const revealOnScroll = () => {
+    reveals.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 80) el.classList.add('show');
+    });
+  };
+  window.addEventListener('scroll', revealOnScroll);
+  revealOnScroll();
 
-function tab(t){
-document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"))
-document.getElementById(t).classList.add("active")
-}
+  // Calculator tabs
+  const calcTabs = document.querySelectorAll('.calc-tab');
+  const calcPanels = document.querySelectorAll('.calc-panel');
 
-function rebar(){
-let w=(d.value*d.value)/162*l.value*n.value
-let pcs=Math.ceil(w/((d.value*d.value)/162*12))
-data.rebar={w,pcs}
-r.innerHTML=`${w.toFixed(2)} kg (${pcs} bars)`
-}
+  calcTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      calcTabs.forEach(t => t.classList.remove('active'));
+      calcPanels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
 
-function concrete(){
-let v=cl.value*cw.value*cd.value
-let c=Math.ceil(v*7)
-data.concrete={c}
-cr.innerHTML=`${c} bags`
-}
+  // Summary store
+  let summaryData = {};
 
-function column(){
-let v=ch.value*cw2.value*cd2.value*cn.value
-let c=Math.ceil(v*7)
-data.column={c}
-colr.innerHTML=`${c} bags`
-}
+  // Rebar
+  function calcRebar(){
+    const d = parseFloat(document.getElementById("rebarSize").value);
+    const L = parseFloat(document.getElementById("barLength").value);
+    const n = parseFloat(document.getElementById("barCount").value);
+    const supply = parseFloat(document.getElementById("supplyLength").value);
+    const waste = parseFloat(document.getElementById("rebarWaste").value);
 
-function tube(){
-let area=((th.value*tw.value)-((th.value-2*tt.value)*(tw.value-2*tt.value)))
-let w=area*0.00000785*tl.value
-data.tube={w}
-tr.innerHTML=`${w.toFixed(2)} kg`
-}
+    if([d,L,n,supply,waste].some(v => isNaN(v) || v < 0)){
+      document.getElementById("rebarResult").innerHTML = "Please enter valid rebar values.";
+      return;
+    }
 
-function pipe(){
-let w=(3.14*(pd.value*pd.value-(pd.value-2*pt.value)*(pd.value-2*pt.value))/4)*0.00000785*pl.value
-data.pipe={w}
-pr.innerHTML=`${w.toFixed(2)} kg`
-}
+    const wpm = (d * d) / 162;
+    let totalWeight = wpm * L * n;
+    totalWeight += totalWeight * waste;
 
-function beam(){
-let steel=bl.value*bn.value*4
-data.beam={steel}
-br.innerHTML=`Steel approx: ${steel} m`
-}
+    const supplyWeight = wpm * supply;
+    const bars = Math.ceil(totalWeight / supplyWeight);
 
-function roof(){
-let area=rl.value*rw.value
-data.roof={area}
-rr.innerHTML=`Area: ${area} m²`
-}
+    summaryData.rebar = {
+      totalWeight,
+      bars,
+      size:d,
+      supply
+    };
 
-function summary(){
-let txt="Material List:<br>"
-if(data.rebar) txt+=`Steel: ${data.rebar.w.toFixed(2)} kg<br>`
-if(data.concrete) txt+=`Cement: ${data.concrete.c} bags<br>`
-summary.innerHTML=txt
-}
+    document.getElementById("rebarResult").innerHTML =
+      `Weight per meter: ${wpm.toFixed(3)} kg/m<br>
+       Total steel weight: ${totalWeight.toFixed(2)} kg<br>
+       Total tons: ${(totalWeight/1000).toFixed(3)} t<br>
+       Equivalent ${supply}m bars: ${bars} pcs`;
+  }
 
-function send(){
-window.location.href="mailto:astravvanna@gmail.com?subject=Estimate"
-}
+  // Concrete
+  function calcConcrete(){
+    const L = parseFloat(document.getElementById("cLength").value);
+    const W = parseFloat(document.getElementById("cWidth").value);
+    const D = parseFloat(document.getElementById("cDepth").value);
+    const grade = parseFloat(document.getElementById("grade").value);
+    const waste = parseFloat(document.getElementById("concreteWaste").value);
 
+    if([L,W,D,grade,waste].some(v => isNaN(v) || v < 0)){
+      document.getElementById("concreteResult").innerHTML = "Please enter valid concrete values.";
+      return;
+    }
+
+    let volume = L * W * D;
+    volume += volume * waste;
+
+    const cement = Math.ceil(volume * grade);
+    const sand = volume * 0.5;
+    const gravel = volume * 0.8;
+
+    summaryData.concrete = { volume, cement, sand, gravel };
+
+    document.getElementById("concreteResult").innerHTML =
+      `Concrete volume: ${volume.toFixed(2)} m³<br>
+       Cement bags: ${cement}<br>
+       Sand: ${sand.toFixed(2)} m³<br>
+       Gravel: ${gravel.toFixed(2)} m³`;
+  }
+
+  // Column
+  function calcColumn(){
+    const H = parseFloat(document.getElementById("colH").value);
+    const W = parseFloat(document.getElementById("colW").value);
+    const D = parseFloat(document.getElementById("colD").value);
+    const N = parseFloat(document.getElementById("colN").value);
+
+    if([H,W,D,N].some(v => isNaN(v) || v < 0)){
+      document.getElementById("columnResult").innerHTML = "Please enter valid column values.";
+      return;
+    }
+
+    const volume = H * W * D * N;
+    const cement = Math.ceil(volume * 7);
+    const sand = volume * 0.5;
+    const gravel = volume * 0.8;
+
+    summaryData.column = { volume, cement, sand, gravel, count:N };
+
+    document.getElementById("columnResult").innerHTML =
+      `Concrete volume: ${volume.toFixed(2)} m³<br>
+       Cement bags: ${cement}<br>
+       Sand: ${sand.toFixed(2)} m³<br>
+       Gravel: ${gravel.toFixed(2)} m³`;
+  }
+
+  // Square tube
+  function calcTube(){
+    const H = parseFloat(document.getElementById("sqH").value);
+    const W = parseFloat(document.getElementById("sqW").value);
+    const t = parseFloat(document.getElementById("sqT").value);
+    const L = parseFloat(document.getElementById("sqL").value);
+
+    if([H,W,t,L].some(v => isNaN(v) || v <= 0) || t*2 >= H || t*2 >= W){
+      document.getElementById("tubeResult").innerHTML = "Please enter valid square tube values.";
+      return;
+    }
+
+    const outer = H * W;
+    const inner = (H - 2*t) * (W - 2*t);
+    const area = outer - inner;
+    const weight = 0.00785 * area * L;
+
+    summaryData.tube = { weight, H, W, t, L };
+
+    document.getElementById("tubeResult").innerHTML =
+      `Total tube weight: ${weight.toFixed(2)} kg`;
+  }
+
+  // Pipe
+  function calcPipe(){
+    const d = parseFloat(document.getElementById("pipeD").value);
+    const t = parseFloat(document.getElementById("pipeT").value);
+    const L = parseFloat(document.getElementById("pipeL").value);
+    const q = parseFloat(document.getElementById("pipeQ").value);
+
+    if([d,t,L,q].some(v => isNaN(v) || v <= 0) || t*2 >= d){
+      document.getElementById("pipeResult").innerHTML = "Please enter valid pipe values.";
+      return;
+    }
+
+    const weight = 0.02466 * (d - t) * t * L * q;
+
+    summaryData.pipe = { weight, d, t, L, q };
+
+    document.getElementById("pipeResult").innerHTML =
+      `Total pipe weight: ${weight.toFixed(2)} kg`;
+  }
+
+  // Beam
+  function calcBeam(){
+    const L = parseFloat(document.getElementById("beamL").value);
+    const top = parseFloat(document.getElementById("topBars").value);
+    const bottom = parseFloat(document.getElementById("bottomBars").value);
+    const stir = parseFloat(document.getElementById("stirrups").value);
+
+    if([L,top,bottom,stir].some(v => isNaN(v) || v < 0)){
+      document.getElementById("beamResult").innerHTML = "Please enter valid beam values.";
+      return;
+    }
+
+    const reinforcementLength = (top + bottom) * L;
+
+    summaryData.beam = { reinforcementLength, stir };
+
+    document.getElementById("beamResult").innerHTML =
+      `Main reinforcement length: ${reinforcementLength.toFixed(2)} m<br>
+       Stirrups: ${stir}`;
+  }
+
+  // Roof
+  function calcRoof(){
+    const L = parseFloat(document.getElementById("roofL").value);
+    const W = parseFloat(document.getElementById("roofW").value);
+    const s = parseFloat(document.getElementById("spacing").value);
+
+    if([L,W,s].some(v => isNaN(v) || v <= 0)){
+      document.getElementById("roofResult").innerHTML = "Please enter valid roof values.";
+      return;
+    }
+
+    const area = L * W;
+    const trusses = Math.ceil(W / s);
+    const purlins = Math.ceil(L / 1.2);
+
+    summaryData.roof = { area, trusses, purlins };
+
+    document.getElementById("roofResult").innerHTML =
+      `Roof area: ${area.toFixed(2)} m²<br>
+       Trusses needed: ${trusses}<br>
+       Estimated purlin lines: ${purlins}`;
+  }
+
+  // Summary
+  function generateSummary(){
+    let html = `<h4>Material Summary</h4>`;
+    let lines = [];
+
+    if(summaryData.rebar){
+      lines.push(`Steel: ${summaryData.rebar.totalWeight.toFixed(2)} kg (${summaryData.rebar.bars} bars of ${summaryData.rebar.supply}m)`);
+    }
+    if(summaryData.concrete){
+      lines.push(`Concrete: ${summaryData.concrete.volume.toFixed(2)} m³`);
+      lines.push(`Cement: ${summaryData.concrete.cement} bags`);
+      lines.push(`Sand: ${summaryData.concrete.sand.toFixed(2)} m³`);
+      lines.push(`Gravel: ${summaryData.concrete.gravel.toFixed(2)} m³`);
+    }
+    if(summaryData.column){
+      lines.push(`Columns volume: ${summaryData.column.volume.toFixed(2)} m³`);
+      lines.push(`Columns cement: ${summaryData.column.cement} bags`);
+    }
+    if(summaryData.tube){
+      lines.push(`Square tube weight: ${summaryData.tube.weight.toFixed(2)} kg`);
+    }
+    if(summaryData.pipe){
+      lines.push(`Round pipe weight: ${summaryData.pipe.weight.toFixed(2)} kg`);
+    }
+    if(summaryData.beam){
+      lines.push(`Beam reinforcement length: ${summaryData.beam.reinforcementLength.toFixed(2)} m`);
+      lines.push(`Beam stirrups: ${summaryData.beam.stir}`);
+    }
+    if(summaryData.roof){
+      lines.push(`Roof area: ${summaryData.roof.area.toFixed(2)} m²`);
+      lines.push(`Trusses: ${summaryData.roof.trusses}`);
+      lines.push(`Purlins: ${summaryData.roof.purlins}`);
+    }
+
+    if(lines.length === 0){
+      document.getElementById("summary").innerHTML = `<h4>Material Summary</h4><p>No calculations yet.</p>`;
+      return;
+    }
+
+    html += `<p>${lines.join("<br>")}</p>`;
+    document.getElementById("summary").innerHTML = html;
+  }
+
+  // Quote builder
+  function buildQuote(){
+    generateSummary();
+    const summaryHTML = document.getElementById("summary").innerHTML;
+
+    document.getElementById("quotePrint").style.display = "block";
+    document.getElementById("quotePrint").innerHTML = `
+      <h3>Astravvanna Construction Estimate</h3>
+      <p><strong>Precision without guesswork.</strong></p>
+      <div class="divider"></div>
+      <p>
+        Phone: +255 749 410 189<br>
+        Email: astravvanna@gmail.com<br>
+        Location: Moshi Urban, Ghala Road
+      </p>
+      <div class="divider"></div>
+      ${summaryHTML}
+      <div class="divider"></div>
+      <p>Generated using Astravvanna Construction Calculator.</p>
+    `;
+  }
+
+  // Send estimate
+  function sendEstimate(){
+    generateSummary();
+
+    let text = "Astravvanna Construction Estimate:%0A%0A";
+
+    if(summaryData.rebar){
+      text += `Steel: ${summaryData.rebar.totalWeight.toFixed(2)} kg (${summaryData.rebar.bars} bars)%0A`;
+    }
+    if(summaryData.concrete){
+      text += `Concrete: ${summaryData.concrete.volume.toFixed(2)} m3%0A`;
+      text += `Cement: ${summaryData.concrete.cement} bags%0A`;
+      text += `Sand: ${summaryData.concrete.sand.toFixed(2)} m3%0A`;
+      text += `Gravel: ${summaryData.concrete.gravel.toFixed(2)} m3%0A`;
+    }
+    if(summaryData.column){
+      text += `Columns cement: ${summaryData.column.cement} bags%0A`;
+    }
+    if(summaryData.tube){
+      text += `Square tube: ${summaryData.tube.weight.toFixed(2)} kg%0A`;
+    }
+    if(summaryData.pipe){
+      text += `Round pipe: ${summaryData.pipe.weight.toFixed(2)} kg%0A`;
+    }
+    if(summaryData.beam){
+      text += `Beam reinforcement: ${summaryData.beam.reinforcementLength.toFixed(2)} m%0A`;
+    }
+    if(summaryData.roof){
+      text += `Roof area: ${summaryData.roof.area.toFixed(2)} m2%0A`;
+      text += `Trusses: ${summaryData.roof.trusses}%0A`;
+    }
+
+    window.location.href = `mailto:astravvanna@gmail.com?subject=Construction Estimate&body=${text}`;
+  }
+
+  // Contact mail
+  function openMailQuote(e){
+    e.preventDefault();
+    const name = document.getElementById("contactName").value;
+    const email = document.getElementById("contactEmail").value;
+    const msg = document.getElementById("contactMessage").value;
+
+    const body = `Name: ${name}%0AEmail: ${email}%0A%0ARequest:%0A${encodeURIComponent(msg)}`;
+    window.location.href = `mailto:astravvanna@gmail.com?subject=Website Inquiry&body=${body}`;
+  }
 </script>
 
 </body>
