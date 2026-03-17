@@ -2,291 +2,283 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Astravvanna | Precision without guesswork</title>
+<title>Astravvanna</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-:root {
-  --navy:#0b1f33;
-  --gold:#c9a24d;
-  --light:#f8f9fb;
+body{
+font-family:Segoe UI,Roboto,sans-serif;
+margin:0;
+background:#0b1f33;
+color:white;
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-  background:#fff;
-  color:var(--navy);
-  scroll-behavior:smooth;
+header{
+text-align:center;
+padding:100px 20px;
+background:#142c47;
 }
 
-/* NAVBAR */
-nav {
-  position:fixed;
-  top:0; left:0;
-  width:100%;
-  padding:18px 60px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(11,31,51,0.55);
-  backdrop-filter:blur(10px);
-  z-index:1000;
-}
-nav img { height:40px; }
-nav a {
-  color:#fff;
-  margin-left:28px;
-  text-decoration:none;
-  font-size:15px;
-}
-nav a:hover { color:var(--gold); }
+header h1{font-size:48px;margin-bottom:10px;}
+header p{color:#c9a24d;font-size:20px;}
 
-/* HERO */
-.hero {
-  position:relative;
-  height:100vh;
-  overflow:hidden;
-}
-.hero video {
-  position:absolute;
-  top:50%; left:50%;
-  min-width:100%;
-  min-height:100%;
-  transform:translate(-50%,-50%);
-  object-fit:cover;
-}
-.hero::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(11,31,51,0.75);
-}
-.hero-content {
-  position:relative;
-  z-index:2;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#fff;
-  animation:fadeUp 1.4s ease;
-}
-.hero h1 { font-size:64px; margin-bottom:14px; }
-.hero p { font-size:20px; margin-bottom:36px; }
+section{padding:60px 20px;max-width:1100px;margin:auto;}
+h2{text-align:center;margin-bottom:30px;}
 
-.btn {
-  padding:14px 36px;
-  border:2px solid #fff;
-  background:transparent;
-  color:#fff;
-  cursor:pointer;
-  font-size:16px;
-  transition:.3s;
-  margin:0 10px;
-}
-.btn:hover {
-  background:#fff;
-  color:var(--navy);
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;
 }
 
-/* SECTIONS */
-section {
-  padding:120px 20px;
-  max-width:1200px;
-  margin:auto;
-}
-h2 {
-  text-align:center;
-  font-size:34px;
-  margin-bottom:40px;
+.card{
+background:#142c47;
+padding:25px;
+border-radius:10px;
+border:1px solid #c9a24d;
 }
 
-/* SCROLL REVEAL */
-.reveal {
-  opacity:0;
-  transform:translateY(60px);
-  transition:1s ease;
-}
-.reveal.show {
-  opacity:1;
-  transform:none;
+.calculator{
+background:#142c47;
+padding:30px;
+border-radius:10px;
 }
 
-/* GRID + CARDS */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:40px;
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+.tab{
+padding:10px 16px;
+border:2px solid #c9a24d;
+color:#c9a24d;
+cursor:pointer;
+border-radius:6px;
 }
-.card {
-  padding:42px;
-  border-radius:18px;
-  background:#fff;
-  box-shadow:0 15px 40px rgba(0,0,0,.06);
-  border-top:4px solid var(--gold);
+.tab.active{background:#c9a24d;color:#0b1f33;}
+
+.section{display:none}
+.section.active{display:block}
+
+input,select{
+padding:10px;
+margin:5px;
+border-radius:6px;
+border:2px solid #c9a24d;
+background:#0b1f33;
+color:white;
 }
 
-/* ABOUT BG */
-.about {
-  background:var(--light);
-  border-radius:26px;
+button{
+padding:10px 16px;
+background:#c9a24d;
+border:none;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
 }
 
-/* PRODUCTS */
-.products img {
-  width:100%;
-  border-radius:18px;
-  transition:.4s;
-}
-.products img:hover {
-  transform:scale(1.05);
+.results{
+margin-top:10px;
+padding:15px;
+border:1px solid #c9a24d;
+border-radius:6px;
 }
 
-/* CONTACT FORM */
-form {
-  max-width:600px;
-  margin:40px auto 0;
-  display:grid;
-  gap:20px;
-}
-input, textarea {
-  padding:14px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  font-size:15px;
-}
-form button {
-  background:var(--navy);
-  color:#fff;
-  border:none;
-  padding:14px;
-  font-size:16px;
-  cursor:pointer;
-}
-form button:hover {
-  background:var(--gold);
-  color:#000;
-}
-
-/* FOOTER */
-footer {
-  background:var(--navy);
-  color:#fff;
-  text-align:center;
-  padding:60px 20px;
-}
-
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(40px); }
-  to { opacity:1; transform:none; }
+footer{
+background:#142c47;
+text-align:center;
+padding:30px;
+margin-top:50px;
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-  <img src="astravvanna logo.png" alt="Astravvanna Logo">
-  <div>
-    <a href="#supply">Supply</a>
-    <a href="#mission">Mission</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+<header>
+<h1>Astravvanna</h1>
+<p>Precision without guesswork</p>
+</header>
 
-<div class="hero">
-  <video autoplay muted loop playsinline>
-    <source src="astravvanna video.mp4" type="video/mp4">
-  </video>
-  <div class="hero-content">
-    <h1>Astravvanna</h1>
-    <p>Precision without guesswork.</p>
-    <button class="btn" onclick="document.getElementById('contact').scrollIntoView()">Request a Quote</button>
-    <a href="Astravvanna_Company_Profile.pdf" class="btn" download>Company Profile</a>
-  </div>
+<section>
+<h2>What We Supply</h2>
+<div class="grid">
+<div class="card">Steel Materials</div>
+<div class="card">Cement & Building Materials</div>
+<div class="card">Construction Machinery</div>
+<div class="card">Tools & Equipment</div>
+</div>
+</section>
+
+<section>
+<h2>Construction Calculator</h2>
+
+<div class="calculator">
+
+<div class="tabs">
+<button class="tab active" onclick="switchTab('rebar')">Rebar</button>
+<button class="tab" onclick="switchTab('concrete')">Concrete</button>
+<button class="tab" onclick="switchTab('column')">Column</button>
 </div>
 
-<section id="supply">
-  <h2>What We Supply</h2>
-  <div class="grid">
-    <div class="card reveal">Steel & Structural Materials</div>
-    <div class="card reveal">Cement & Building Materials</div>
-    <div class="card reveal">Construction Machinery</div>
-    <div class="card reveal">Professional Tools & Equipment</div>
-  </div>
+<!-- REBAR -->
+<div id="rebar" class="section active">
+<input id="rebarSize" placeholder="Rebar size (mm)">
+<input id="barLength" placeholder="Length (m)">
+<input id="barCount" placeholder="Number of bars">
+<button onclick="calcRebar()">Calculate</button>
+<div id="rebarResult" class="results"></div>
+</div>
+
+<!-- CONCRETE -->
+<div id="concrete" class="section">
+<input id="cLength" placeholder="Length (m)">
+<input id="cWidth" placeholder="Width (m)">
+<input id="cDepth" placeholder="Thickness (m)">
+<button onclick="calcConcrete()">Calculate</button>
+<div id="concreteResult" class="results"></div>
+</div>
+
+<!-- COLUMN -->
+<div id="column" class="section">
+<input id="colH" placeholder="Height (m)">
+<input id="colW" placeholder="Width (m)">
+<input id="colD" placeholder="Depth (m)">
+<input id="colN" placeholder="Number of columns">
+<button onclick="calcColumn()">Calculate</button>
+<div id="columnResult" class="results"></div>
+</div>
+
+</div>
+
 </section>
 
-<section id="mission" class="about">
-  <h2>Mission & Vision</h2>
-  <div class="grid">
-    <div class="card reveal">
-      <strong>Our Mission</strong><br><br>
-      To deliver top-level customer service while prioritizing professional knowledge and long-term value.
-    </div>
-    <div class="card reveal">
-      <strong>Our Vision</strong><br><br>
-      To see Tanzania develop world-class residential and commercial buildings comparable to Dubai.
-    </div>
-  </div>
+<!-- SUMMARY -->
+<section>
+<h2>Material Summary</h2>
+
+<div id="summary" class="results">
+No calculations yet.
+</div>
+
+<button onclick="generateSummary()">Generate Material List</button>
+<button onclick="sendEstimate()">Send Estimate</button>
+
 </section>
 
-<section class="products">
-  <h2>Our Products</h2>
-  <div class="grid">
-    <img src="nondo.jpeg" class="reveal">
-    <img src="simba cement.jpeg" class="reveal">
-    <img src="tools.jpeg" class="reveal">
-    <img src="machine.jpeg" class="reveal">
-  </div>
-</section>
-
-<section id="about">
-  <h2>About Astravvanna</h2>
-  <p class="reveal" style="max-width:800px;margin:auto;text-align:center;">
-    Astravvanna supplies construction materials and equipment with a strong focus on reliability,
-    knowledge, and ethical business practices.
-  </p>
-</section>
-
-<section id="contact">
-  <h2>Request a Quote</h2>
-
-  <!-- NETLIFY FORM -->
-  <form name="quote" method="POST" data-netlify="true">
-    <input type="hidden" name="form-name" value="quote">
-    <input name="name" placeholder="Your Name" required>
-    <input name="email" type="email" placeholder="Email Address" required>
-    <textarea name="message" rows="5" placeholder="Tell us what you need"></textarea>
-    <button type="submit">Send Request</button>
-  </form>
-
-  <p class="reveal" style="text-align:center;margin-top:30px;">
-    📍 Moshi Urban, Ghala Road<br>
-    📞 +255 749 410 189<br>
-    ✉️ astravvanna@gmail.com
-  </p>
+<section>
+<h2>Contact</h2>
+<p style="text-align:center">
+📍 Moshi Urban, Ghala Road<br>
+📞 +255 749 410 189<br>
+✉️ astravvanna@gmail.com
+</p>
 </section>
 
 <footer>
-  <p><strong>Astravvanna</strong></p>
-  <p>Precision without guesswork.</p>
-  <p>Moshi Urban, Ghala Road</p>
+<p>Astravvanna</p>
+<p>Precision without guesswork</p>
 </footer>
 
 <script>
-const reveals = document.querySelectorAll('.reveal');
-window.addEventListener('scroll', () => {
-  reveals.forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-      el.classList.add('show');
-    }
-  });
-});
+
+let summaryData = {}
+
+function switchTab(tab){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"))
+document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"))
+document.getElementById(tab).classList.add("active")
+event.target.classList.add("active")
+}
+
+/* REBAR */
+function calcRebar(){
+let d=parseFloat(rebarSize.value)
+let L=parseFloat(barLength.value)
+let n=parseFloat(barCount.value)
+
+let wpm=(d*d)/162
+let weight=wpm*L*n
+
+let bars=Math.ceil(weight/(wpm*12))
+
+summaryData.rebar = {weight,bars}
+
+rebarResult.innerHTML=
+`Steel Weight: ${weight.toFixed(2)} kg<br>Bars: ${bars}`
+}
+
+/* CONCRETE */
+function calcConcrete(){
+let L=parseFloat(cLength.value)
+let W=parseFloat(cWidth.value)
+let D=parseFloat(cDepth.value)
+
+let volume=L*W*D
+let cement=Math.ceil(volume*7)
+let sand=volume*0.5
+let gravel=volume*0.8
+
+summaryData.concrete = {cement,sand,gravel}
+
+concreteResult.innerHTML=
+`Volume: ${volume.toFixed(2)} m³<br>
+Cement: ${cement} bags<br>
+Sand: ${sand.toFixed(2)} m³<br>
+Gravel: ${gravel.toFixed(2)} m³`
+}
+
+/* COLUMN */
+function calcColumn(){
+let H=parseFloat(colH.value)
+let W=parseFloat(colW.value)
+let D=parseFloat(colD.value)
+let N=parseFloat(colN.value)
+
+let volume=H*W*D*N
+let cement=Math.ceil(volume*7)
+let sand=volume*0.5
+let gravel=volume*0.8
+
+summaryData.column = {cement,sand,gravel}
+
+columnResult.innerHTML=
+`Volume: ${volume.toFixed(2)} m³<br>
+Cement: ${cement} bags<br>
+Sand: ${sand.toFixed(2)} m³<br>
+Gravel: ${gravel.toFixed(2)} m³`
+}
+
+/* SUMMARY */
+function generateSummary(){
+let html="<h3>Material List</h3><hr>"
+
+if(summaryData.rebar){
+html+=`Steel: ${summaryData.rebar.weight.toFixed(2)} kg (${summaryData.rebar.bars} bars)<br>`
+}
+
+if(summaryData.concrete){
+html+=`Cement: ${summaryData.concrete.cement} bags<br>`
+html+=`Sand: ${summaryData.concrete.sand.toFixed(2)} m³<br>`
+html+=`Gravel: ${summaryData.concrete.gravel.toFixed(2)} m³<br>`
+}
+
+summary.innerHTML=html
+}
+
+/* EMAIL */
+function sendEstimate(){
+let text="Astravvanna Estimate:%0A%0A"
+
+if(summaryData.rebar){
+text+=`Steel: ${summaryData.rebar.weight.toFixed(2)} kg%0A`
+}
+
+if(summaryData.concrete){
+text+=`Cement: ${summaryData.concrete.cement} bags%0A`
+}
+
+window.location.href=`mailto:astravvanna@gmail.com?subject=Estimate&body=${text}`
+}
+
 </script>
 
 </body>
