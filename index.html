@@ -6,88 +6,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{
-font-family:Segoe UI,Roboto,sans-serif;
-margin:0;
-background:#0b1f33;
-color:white;
-}
+body{font-family:Segoe UI;margin:0;background:#0b1f33;color:white;}
+header{text-align:center;padding:100px;background:#142c47;}
+header h1{font-size:48px}
+header p{color:#c9a24d}
 
-header{
-text-align:center;
-padding:100px 20px;
-background:#142c47;
-}
+section{padding:60px 20px;max-width:1100px;margin:auto}
+h2{text-align:center;margin-bottom:30px}
 
-header h1{font-size:48px;margin-bottom:10px;}
-header p{color:#c9a24d;font-size:20px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:#142c47;padding:20px;border:1px solid #c9a24d;border-radius:10px}
 
-section{padding:60px 20px;max-width:1100px;margin:auto;}
-h2{text-align:center;margin-bottom:30px;}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:20px;
-}
-
-.card{
-background:#142c47;
-padding:25px;
-border-radius:10px;
-border:1px solid #c9a24d;
-}
-
-.calculator{
-background:#142c47;
-padding:30px;
-border-radius:10px;
-}
-
-.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
-.tab{
-padding:10px 16px;
-border:2px solid #c9a24d;
-color:#c9a24d;
-cursor:pointer;
-border-radius:6px;
-}
-.tab.active{background:#c9a24d;color:#0b1f33;}
+.calculator{background:#142c47;padding:30px;border-radius:10px}
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.tab{padding:10px;border:2px solid #c9a24d;color:#c9a24d;cursor:pointer}
+.tab.active{background:#c9a24d;color:#0b1f33}
 
 .section{display:none}
 .section.active{display:block}
 
-input,select{
-padding:10px;
-margin:5px;
-border-radius:6px;
-border:2px solid #c9a24d;
-background:#0b1f33;
-color:white;
-}
+input{padding:10px;margin:5px;border:2px solid #c9a24d;background:#0b1f33;color:white;border-radius:6px}
 
-button{
-padding:10px 16px;
-background:#c9a24d;
-border:none;
-border-radius:6px;
-font-weight:bold;
-cursor:pointer;
-}
+button{padding:10px 16px;background:#c9a24d;border:none;border-radius:6px;cursor:pointer}
 
-.results{
-margin-top:10px;
-padding:15px;
-border:1px solid #c9a24d;
-border-radius:6px;
-}
+.results{margin-top:10px;padding:10px;border:1px solid #c9a24d;border-radius:6px}
 
-footer{
-background:#142c47;
-text-align:center;
-padding:30px;
-margin-top:50px;
-}
+footer{text-align:center;padding:30px;background:#142c47}
 </style>
 </head>
 
@@ -102,9 +46,17 @@ margin-top:50px;
 <h2>What We Supply</h2>
 <div class="grid">
 <div class="card">Steel Materials</div>
-<div class="card">Cement & Building Materials</div>
-<div class="card">Construction Machinery</div>
-<div class="card">Tools & Equipment</div>
+<div class="card">Cement</div>
+<div class="card">Machinery</div>
+<div class="card">Tools</div>
+</div>
+</section>
+
+<section>
+<h2>Mission & Vision</h2>
+<div class="grid">
+<div class="card">Provide top customer service and knowledge</div>
+<div class="card">Build Tanzania like Dubai standard</div>
 </div>
 </section>
 
@@ -114,60 +66,92 @@ margin-top:50px;
 <div class="calculator">
 
 <div class="tabs">
-<button class="tab active" onclick="switchTab('rebar')">Rebar</button>
-<button class="tab" onclick="switchTab('concrete')">Concrete</button>
-<button class="tab" onclick="switchTab('column')">Column</button>
+<button class="tab active" onclick="tab('rebar')">Rebar</button>
+<button class="tab" onclick="tab('concrete')">Concrete</button>
+<button class="tab" onclick="tab('column')">Column</button>
+<button class="tab" onclick="tab('tube')">Square Tube</button>
+<button class="tab" onclick="tab('pipe')">Pipe</button>
+<button class="tab" onclick="tab('beam')">Beam</button>
+<button class="tab" onclick="tab('roof')">Roof</button>
 </div>
 
 <!-- REBAR -->
 <div id="rebar" class="section active">
-<input id="rebarSize" placeholder="Rebar size (mm)">
-<input id="barLength" placeholder="Length (m)">
-<input id="barCount" placeholder="Number of bars">
-<button onclick="calcRebar()">Calculate</button>
-<div id="rebarResult" class="results"></div>
+<input id="d" placeholder="Diameter mm">
+<input id="l" placeholder="Length m">
+<input id="n" placeholder="Bars">
+<button onclick="rebar()">Calculate</button>
+<div id="r" class="results"></div>
 </div>
 
 <!-- CONCRETE -->
 <div id="concrete" class="section">
-<input id="cLength" placeholder="Length (m)">
-<input id="cWidth" placeholder="Width (m)">
-<input id="cDepth" placeholder="Thickness (m)">
-<button onclick="calcConcrete()">Calculate</button>
-<div id="concreteResult" class="results"></div>
+<input id="cl" placeholder="Length m">
+<input id="cw" placeholder="Width m">
+<input id="cd" placeholder="Depth m">
+<button onclick="concrete()">Calculate</button>
+<div id="cr" class="results"></div>
 </div>
 
 <!-- COLUMN -->
 <div id="column" class="section">
-<input id="colH" placeholder="Height (m)">
-<input id="colW" placeholder="Width (m)">
-<input id="colD" placeholder="Depth (m)">
-<input id="colN" placeholder="Number of columns">
-<button onclick="calcColumn()">Calculate</button>
-<div id="columnResult" class="results"></div>
+<input id="ch" placeholder="Height">
+<input id="cw2" placeholder="Width">
+<input id="cd2" placeholder="Depth">
+<input id="cn" placeholder="No. columns">
+<button onclick="column()">Calculate</button>
+<div id="colr" class="results"></div>
+</div>
+
+<!-- TUBE -->
+<div id="tube" class="section">
+<input id="th" placeholder="Height mm">
+<input id="tw" placeholder="Width mm">
+<input id="tt" placeholder="Thickness mm">
+<input id="tl" placeholder="Length m">
+<button onclick="tube()">Calculate</button>
+<div id="tr" class="results"></div>
+</div>
+
+<!-- PIPE -->
+<div id="pipe" class="section">
+<input id="pd" placeholder="Diameter mm">
+<input id="pt" placeholder="Thickness mm">
+<input id="pl" placeholder="Length m">
+<button onclick="pipe()">Calculate</button>
+<div id="pr" class="results"></div>
+</div>
+
+<!-- BEAM -->
+<div id="beam" class="section">
+<input id="bl" placeholder="Length m">
+<input id="bn" placeholder="Beams">
+<button onclick="beam()">Estimate</button>
+<div id="br" class="results"></div>
+</div>
+
+<!-- ROOF -->
+<div id="roof" class="section">
+<input id="rl" placeholder="Length m">
+<input id="rw" placeholder="Width m">
+<button onclick="roof()">Estimate</button>
+<div id="rr" class="results"></div>
 </div>
 
 </div>
-
 </section>
 
-<!-- SUMMARY -->
 <section>
 <h2>Material Summary</h2>
-
-<div id="summary" class="results">
-No calculations yet.
-</div>
-
-<button onclick="generateSummary()">Generate Material List</button>
-<button onclick="sendEstimate()">Send Estimate</button>
-
+<div id="summary" class="results">No data yet</div>
+<button onclick="summary()">Generate</button>
+<button onclick="send()">Send Estimate</button>
 </section>
 
 <section>
 <h2>Contact</h2>
 <p style="text-align:center">
-📍 Moshi Urban, Ghala Road<br>
+📍 Moshi Urban<br>
 📞 +255 749 410 189<br>
 ✉️ astravvanna@gmail.com
 </p>
@@ -175,108 +159,72 @@ No calculations yet.
 
 <footer>
 <p>Astravvanna</p>
-<p>Precision without guesswork</p>
 </footer>
 
 <script>
 
-let summaryData = {}
+let data={}
 
-function switchTab(tab){
-document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"))
-document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"))
-document.getElementById(tab).classList.add("active")
-event.target.classList.add("active")
+function tab(t){
+document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"))
+document.getElementById(t).classList.add("active")
 }
 
-/* REBAR */
-function calcRebar(){
-let d=parseFloat(rebarSize.value)
-let L=parseFloat(barLength.value)
-let n=parseFloat(barCount.value)
-
-let wpm=(d*d)/162
-let weight=wpm*L*n
-
-let bars=Math.ceil(weight/(wpm*12))
-
-summaryData.rebar = {weight,bars}
-
-rebarResult.innerHTML=
-`Steel Weight: ${weight.toFixed(2)} kg<br>Bars: ${bars}`
+function rebar(){
+let w=(d.value*d.value)/162*l.value*n.value
+let pcs=Math.ceil(w/((d.value*d.value)/162*12))
+data.rebar={w,pcs}
+r.innerHTML=`${w.toFixed(2)} kg (${pcs} bars)`
 }
 
-/* CONCRETE */
-function calcConcrete(){
-let L=parseFloat(cLength.value)
-let W=parseFloat(cWidth.value)
-let D=parseFloat(cDepth.value)
-
-let volume=L*W*D
-let cement=Math.ceil(volume*7)
-let sand=volume*0.5
-let gravel=volume*0.8
-
-summaryData.concrete = {cement,sand,gravel}
-
-concreteResult.innerHTML=
-`Volume: ${volume.toFixed(2)} m³<br>
-Cement: ${cement} bags<br>
-Sand: ${sand.toFixed(2)} m³<br>
-Gravel: ${gravel.toFixed(2)} m³`
+function concrete(){
+let v=cl.value*cw.value*cd.value
+let c=Math.ceil(v*7)
+data.concrete={c}
+cr.innerHTML=`${c} bags`
 }
 
-/* COLUMN */
-function calcColumn(){
-let H=parseFloat(colH.value)
-let W=parseFloat(colW.value)
-let D=parseFloat(colD.value)
-let N=parseFloat(colN.value)
-
-let volume=H*W*D*N
-let cement=Math.ceil(volume*7)
-let sand=volume*0.5
-let gravel=volume*0.8
-
-summaryData.column = {cement,sand,gravel}
-
-columnResult.innerHTML=
-`Volume: ${volume.toFixed(2)} m³<br>
-Cement: ${cement} bags<br>
-Sand: ${sand.toFixed(2)} m³<br>
-Gravel: ${gravel.toFixed(2)} m³`
+function column(){
+let v=ch.value*cw2.value*cd2.value*cn.value
+let c=Math.ceil(v*7)
+data.column={c}
+colr.innerHTML=`${c} bags`
 }
 
-/* SUMMARY */
-function generateSummary(){
-let html="<h3>Material List</h3><hr>"
-
-if(summaryData.rebar){
-html+=`Steel: ${summaryData.rebar.weight.toFixed(2)} kg (${summaryData.rebar.bars} bars)<br>`
+function tube(){
+let area=((th.value*tw.value)-((th.value-2*tt.value)*(tw.value-2*tt.value)))
+let w=area*0.00000785*tl.value
+data.tube={w}
+tr.innerHTML=`${w.toFixed(2)} kg`
 }
 
-if(summaryData.concrete){
-html+=`Cement: ${summaryData.concrete.cement} bags<br>`
-html+=`Sand: ${summaryData.concrete.sand.toFixed(2)} m³<br>`
-html+=`Gravel: ${summaryData.concrete.gravel.toFixed(2)} m³<br>`
+function pipe(){
+let w=(3.14*(pd.value*pd.value-(pd.value-2*pt.value)*(pd.value-2*pt.value))/4)*0.00000785*pl.value
+data.pipe={w}
+pr.innerHTML=`${w.toFixed(2)} kg`
 }
 
-summary.innerHTML=html
+function beam(){
+let steel=bl.value*bn.value*4
+data.beam={steel}
+br.innerHTML=`Steel approx: ${steel} m`
 }
 
-/* EMAIL */
-function sendEstimate(){
-let text="Astravvanna Estimate:%0A%0A"
-
-if(summaryData.rebar){
-text+=`Steel: ${summaryData.rebar.weight.toFixed(2)} kg%0A`
+function roof(){
+let area=rl.value*rw.value
+data.roof={area}
+rr.innerHTML=`Area: ${area} m²`
 }
 
-if(summaryData.concrete){
-text+=`Cement: ${summaryData.concrete.cement} bags%0A`
+function summary(){
+let txt="Material List:<br>"
+if(data.rebar) txt+=`Steel: ${data.rebar.w.toFixed(2)} kg<br>`
+if(data.concrete) txt+=`Cement: ${data.concrete.c} bags<br>`
+summary.innerHTML=txt
 }
 
-window.location.href=`mailto:astravvanna@gmail.com?subject=Estimate&body=${text}`
+function send(){
+window.location.href="mailto:astravvanna@gmail.com?subject=Estimate"
 }
 
 </script>
