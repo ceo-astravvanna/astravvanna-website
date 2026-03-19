@@ -608,153 +608,116 @@
       border-radius:0;
     }
   }
-  /* ========== LUXURY SUPPLY SECTION ========== */
-.lux-supply-section{
-  position:relative;
-  max-width:1280px;
-  margin:auto;
-  padding:110px 24px;
+ /* APPLE-STYLE STORY FLOW */
+.story-wrap{
+  max-width:none;
+  padding:0;
 }
 
-.lux-section-head{
-  text-align:center;
-  max-width:820px;
-  margin:0 auto 42px;
-}
-
-.lux-mini-label{
-  display:inline-block;
-  margin-bottom:14px;
-  padding:8px 14px;
-  border:1px solid rgba(201,162,77,.35);
-  border-radius:999px;
-  background:rgba(201,162,77,.08);
-  color:var(--gold);
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:1.7px;
-}
-
-.lux-section-title{
-  margin:0 0 16px;
-  font-size:clamp(30px,4vw,52px);
-  line-height:1.08;
-  color:var(--navy);
-  letter-spacing:-.8px;
-}
-
-.lux-section-text{
-  margin:0 auto;
-  max-width:760px;
-  color:#5b6b7a;
-  font-size:17px;
-  line-height:1.8;
-}
-
-.lux-supply-grid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:24px;
-}
-
-.lux-supply-card{
-  position:relative;
-  overflow:hidden;
-  min-height:340px;
-  border-radius:28px;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.94));
-  border:1px solid rgba(255,255,255,.65);
-  box-shadow:
-    0 20px 50px rgba(11,31,51,.1),
-    inset 0 1px 0 rgba(255,255,255,.7);
-  transition:.35s ease;
+.story-panel{
+  min-height:100vh;
   display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  align-items:center;
+  justify-content:center;
+  padding:80px 24px;
 }
 
-.lux-supply-card:hover{
-  transform:translateY(-8px);
-  box-shadow:
-    0 28px 65px rgba(11,31,51,.15),
-    inset 0 1px 0 rgba(255,255,255,.8);
+.panel-light{
+  background:#f5f5f7;
+  color:#111;
 }
 
-.lux-supply-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:
-    radial-gradient(circle at top right, rgba(201,162,77,.12), transparent 28%),
-    linear-gradient(180deg, rgba(255,255,255,.06), transparent 35%);
-  pointer-events:none;
+.panel-dark{
+  background:#0b1f33;
+  color:white;
 }
 
-.lux-supply-visual{
-  height:180px;
-  border-bottom:1px solid rgba(11,31,51,.05);
+.story-inner{
+  width:100%;
+  max-width:1100px;
+  text-align:center;
+}
+
+.story-eyebrow{
+  margin:0 0 14px;
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+  color:#c9a24d;
+}
+
+.story-title{
+  margin:0 auto 18px;
+  max-width:900px;
+  font-size:clamp(36px,6vw,74px);
+  line-height:1.02;
+  letter-spacing:-1.4px;
+}
+
+.story-text{
+  margin:0 auto 34px;
+  max-width:760px;
+  font-size:18px;
+  line-height:1.8;
+  color:inherit;
+  opacity:.82;
+}
+
+.story-visual{
+  width:min(900px, 100%);
+  height:420px;
+  margin:0 auto;
+  border-radius:34px;
+  box-shadow:0 20px 60px rgba(0,0,0,.15);
+  border:1px solid rgba(255,255,255,.08);
   background-size:cover;
   background-position:center;
-  position:relative;
+  transition:transform .45s ease, box-shadow .45s ease;
 }
 
-.lux-supply-visual::after{
-  content:"";
-  position:absolute;
-  inset:0;
+.story-visual:hover{
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:0 28px 80px rgba(0,0,0,.22);
+}
+
+.visual-steel{
   background:
-    linear-gradient(180deg, rgba(8,22,38,.08), rgba(8,22,38,.16));
-}
-
-.lux-supply-copy{
-  padding:26px 26px 30px;
-  position:relative;
-  z-index:2;
-}
-
-.lux-supply-copy h3{
-  margin:0 0 12px;
-  color:var(--navy);
-  font-size:24px;
-  letter-spacing:-.3px;
-}
-
-.lux-supply-copy p{
-  margin:0;
-  color:#5b6b7a;
-  line-height:1.75;
-  font-size:15.5px;
-}
-
-/* visual backgrounds */
-.steel-bg{
-  background:
-    linear-gradient(135deg, rgba(120,140,160,.18), rgba(70,90,110,.06)),
+    linear-gradient(rgba(11,31,51,.18), rgba(11,31,51,.18)),
     url("nondo.jpeg") center/cover no-repeat;
 }
 
-.cement-bg{
+.visual-pipe{
   background:
-    linear-gradient(135deg, rgba(180,180,180,.18), rgba(120,120,120,.08)),
+    linear-gradient(rgba(11,31,51,.28), rgba(11,31,51,.28)),
+    url("machine.jpeg") center/cover no-repeat;
+}
+
+.visual-cement{
+  background:
+    linear-gradient(rgba(11,31,51,.18), rgba(11,31,51,.18)),
     url("simba cement.jpeg") center/cover no-repeat;
 }
 
-.roof-bg{
+.visual-tools{
   background:
-    linear-gradient(135deg, rgba(120,130,150,.18), rgba(60,70,90,.08));
-}
-
-.tools-bg{
-  background:
-    linear-gradient(135deg, rgba(90,110,140,.18), rgba(40,60,90,.08)),
+    linear-gradient(rgba(11,31,51,.22), rgba(11,31,51,.22)),
     url("tools.jpeg") center/cover no-repeat;
 }
 
-/* responsive */
-@media (max-width: 900px){
-  .lux-supply-grid{
-    grid-template-columns:1fr;
+@media (max-width: 768px){
+  .story-panel{
+    min-height:auto;
+    padding:70px 18px;
+  }
+
+  .story-visual{
+    height:260px;
+    border-radius:22px;
+  }
+
+  .story-text{
+    font-size:16px;
   }
 }
 </style>
@@ -817,49 +780,55 @@
 </header>
 
 
-  <section id="supply" class="lux-supply-section">
-  <div class="lux-section-head reveal">
-    <div class="lux-mini-label">WHAT WE SUPPLY</div>
-    <h2 class="lux-section-title">Premium materials for modern building projects.</h2>
-    <p class="lux-section-text">
-      From structural steel to finishing essentials, Astravvanna presents construction supply
-      with the same discipline, clarity, and premium experience serious projects deserve.
-    </p>
-  </div>
+<section id="supply" class="story-wrap">
 
-  <div class="lux-supply-grid">
-    <article class="lux-supply-card reveal">
-      <div class="lux-supply-visual steel-bg"></div>
-      <div class="lux-supply-copy">
-        <h3>Steel & Structural Materials</h3>
-        <p>Rebars, pipes, square tubes, and structural steel for projects that demand strength and precision.</p>
-      </div>
-    </article>
+  <section class="story-panel panel-light">
+    <div class="story-inner reveal">
+      <p class="story-eyebrow">Premium Construction Supply</p>
+      <h2 class="story-title">Materials that make serious projects feel certain.</h2>
+      <p class="story-text">
+        Astravvanna supplies steel, cement, pipes, roofing sheets, finishes, and tools
+        with a premium, modern experience designed for contractors, builders, and developers.
+      </p>
+      <div class="story-visual visual-steel"></div>
+    </div>
+  </section>
 
-    <article class="lux-supply-card reveal">
-      <div class="lux-supply-visual cement-bg"></div>
-      <div class="lux-supply-copy">
-        <h3>Cement & Concrete Materials</h3>
-        <p>Reliable cement and site-ready materials for slabs, columns, beams, and all concrete works.</p>
-      </div>
-    </article>
+  <section class="story-panel panel-dark">
+    <div class="story-inner reveal">
+      <p class="story-eyebrow">Structural Confidence</p>
+      <h2 class="story-title">Steel, pipes, and square tubes presented with clarity.</h2>
+      <p class="story-text">
+        From reinforcement bars to fabricated sections, our steel supply is built around
+        precision, availability, and dependable execution on site.
+      </p>
+      <div class="story-visual visual-pipe"></div>
+    </div>
+  </section>
 
-    <article class="lux-supply-card reveal">
-      <div class="lux-supply-visual roof-bg"></div>
-      <div class="lux-supply-copy">
-        <h3>Roofing, Finishes & Surfaces</h3>
-        <p>Roofing sheets, tiles, paint, and visible finishing materials presented with premium project appeal.</p>
-      </div>
-    </article>
+  <section class="story-panel panel-light">
+    <div class="story-inner reveal">
+      <p class="story-eyebrow">Concrete Essentials</p>
+      <h2 class="story-title">Cement and concrete materials, ready for real work.</h2>
+      <p class="story-text">
+        For slabs, beams, columns, and general works, Astravvanna supports projects with
+        reliable cement supply and smarter material planning.
+      </p>
+      <div class="story-visual visual-cement"></div>
+    </div>
+  </section>
 
-    <article class="lux-supply-card reveal">
-      <div class="lux-supply-visual tools-bg"></div>
-      <div class="lux-supply-copy">
-        <h3>Tools, Equipment & Site Essentials</h3>
-        <p>Professional tools and practical site equipment that keep work moving efficiently from foundation to finish.</p>
-      </div>
-    </article>
-  </div>
+  <section class="story-panel panel-dark">
+    <div class="story-inner reveal">
+      <p class="story-eyebrow">Tools. Equipment. Momentum.</p>
+      <h2 class="story-title">Professional site support beyond materials.</h2>
+      <p class="story-text">
+        Tools, equipment, and site essentials that help teams work faster, cleaner, and with more confidence.
+      </p>
+      <div class="story-visual visual-tools"></div>
+    </div>
+  </section>
+
 </section>
 
 
