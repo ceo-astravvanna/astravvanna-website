@@ -608,7 +608,7 @@
       border-radius:0;
     }
   }
-/* APPLE-STYLE STORY FLOW */
+/* APPLE-TESLA STORY FLOW WITH PHOTO PLACEHOLDERS */
 .story-wrap{
   max-width:none;
   padding:0;
@@ -619,7 +619,7 @@
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:80px 24px;
+  padding:110px 24px;
 }
 
 .panel-light{
@@ -634,13 +634,13 @@
 
 .story-inner{
   width:100%;
-  max-width:1100px;
+  max-width:1180px;
   text-align:center;
 }
 
 .story-eyebrow{
   margin:0 0 14px;
-  font-size:14px;
+  font-size:13px;
   font-weight:700;
   letter-spacing:1.8px;
   text-transform:uppercase;
@@ -649,75 +649,128 @@
 
 .story-title{
   margin:0 auto 18px;
-  max-width:900px;
-  font-size:clamp(36px,6vw,74px);
+  max-width:920px;
+  font-size:clamp(38px, 6vw, 78px);
   line-height:1.02;
-  letter-spacing:-1.4px;
+  letter-spacing:-1.5px;
 }
 
 .story-text{
-  margin:0 auto 34px;
-  max-width:760px;
+  margin:0 auto 42px;
+  max-width:780px;
   font-size:18px;
-  line-height:1.8;
-  color:inherit;
+  line-height:1.85;
   opacity:.82;
 }
 
-.story-visual{
-  width:min(900px, 100%);
-  height:420px;
+.story-photo-large{
+  width:min(980px, 100%);
+  height:520px;
   margin:0 auto;
-  border-radius:34px;
-  box-shadow:0 20px 60px rgba(0,0,0,.15);
-  border:1px solid rgba(255,255,255,.08);
-  background-size:cover;
-  background-position:center;
-  transition:transform .45s ease, box-shadow .45s ease;
 }
 
-.story-visual:hover{
-  transform:translateY(-6px) scale(1.01);
-  box-shadow:0 28px 80px rgba(0,0,0,.22);
+.story-photo-grid{
+  display:grid;
+  gap:22px;
+  width:100%;
+  max-width:1080px;
+  margin:0 auto;
 }
 
-.visual-steel{
-  background:
-    linear-gradient(rgba(11,31,51,.18), rgba(11,31,51,.18)),
-    url("nondo.jpeg") center/cover no-repeat;
+.two-up{
+  grid-template-columns:repeat(2, 1fr);
 }
 
-.visual-pipe{
-  background:
-    linear-gradient(rgba(11,31,51,.28), rgba(11,31,51,.28)),
-    url("machine.jpeg") center/cover no-repeat;
+.three-up{
+  grid-template-columns:repeat(3, 1fr);
 }
 
-.visual-cement{
-  background:
-    linear-gradient(rgba(11,31,51,.18), rgba(11,31,51,.18)),
-    url("simba cement.jpeg") center/cover no-repeat;
+.four-up{
+  grid-template-columns:repeat(4, 1fr);
 }
 
-.visual-tools{
-  background:
-    linear-gradient(rgba(11,31,51,.22), rgba(11,31,51,.22)),
-    url("tools.jpeg") center/cover no-repeat;
+.mixed-layout{
+  grid-template-columns:2fr 1fr 1fr;
 }
 
-@media (max-width: 768px){
+.photo-slot{
+  min-height:260px;
+  border-radius:28px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:.2px;
+  backdrop-filter: blur(10px);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:0 20px 50px rgba(0,0,0,.12);
+  transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+.panel-light .photo-slot{
+  background:linear-gradient(145deg, rgba(255,255,255,.95), rgba(238,241,245,.95));
+  color:#5c6875;
+  border-color:rgba(11,31,51,.08);
+}
+
+.panel-dark .photo-slot{
+  background:linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+  color:#dfe7ef;
+  border-color:rgba(255,255,255,.12);
+}
+
+.photo-slot:hover{
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:0 28px 70px rgba(0,0,0,.18);
+  border-color:#c9a24d;
+}
+
+.photo-slot.tall{
+  min-height:420px;
+}
+
+.photo-slot.wide{
+  min-height:360px;
+}
+
+@media (max-width: 980px){
   .story-panel{
     min-height:auto;
-    padding:70px 18px;
+    padding:90px 20px;
   }
 
-  .story-visual{
-    height:260px;
-    border-radius:22px;
+  .two-up,
+  .three-up,
+  .four-up,
+  .mixed-layout{
+    grid-template-columns:1fr;
+  }
+
+  .story-photo-large{
+    height:320px;
+  }
+
+  .photo-slot,
+  .photo-slot.tall,
+  .photo-slot.wide{
+    min-height:220px;
+  }
+}
+
+@media (max-width: 640px){
+  .story-title{
+    font-size:clamp(32px, 10vw, 50px);
   }
 
   .story-text{
     font-size:16px;
+  }
+
+  .story-panel{
+    padding:72px 16px;
   }
 }
 </style>
@@ -784,50 +837,85 @@
   <section class="story-panel panel-light">
     <div class="story-inner reveal">
       <p class="story-eyebrow">Premium Construction Supply</p>
-      <h2 class="story-title">Materials that make serious projects feel certain.</h2>
+      <h2 class="story-title">A cleaner way to present building materials.</h2>
       <p class="story-text">
-        Astravvanna supplies steel, cement, pipes, roofing sheets, finishes, and tools
-        with a premium, modern experience designed for contractors, builders, and developers.
+        Astravvanna delivers a modern construction supply experience — premium, spacious,
+        and built to make every serious project feel supported from estimate to execution.
       </p>
-      <div class="story-visual visual-steel"></div>
+
+      <div class="story-photo-large photo-slot">Hero Product Image</div>
     </div>
   </section>
 
   <section class="story-panel panel-dark">
     <div class="story-inner reveal">
-      <p class="story-eyebrow">Structural Confidence</p>
-      <h2 class="story-title">Steel, pipes, and square tubes presented with clarity.</h2>
+      <p class="story-eyebrow">Featured Materials</p>
+      <h2 class="story-title">Built for steel, cement, roofing, pipes, finishes, and more.</h2>
       <p class="story-text">
-        From reinforcement bars to fabricated sections, our steel supply is built around
-        precision, availability, and dependable execution on site.
+        Present your products like premium featured items in a futuristic showroom —
+        calm, polished, and visually confident.
       </p>
-      <div class="story-visual visual-pipe"></div>
+
+      <div class="story-photo-grid two-up">
+        <div class="photo-slot tall">Steel / Structural</div>
+        <div class="photo-slot tall">Cement / Concrete</div>
+      </div>
     </div>
   </section>
 
   <section class="story-panel panel-light">
     <div class="story-inner reveal">
-      <p class="story-eyebrow">Concrete Essentials</p>
-      <h2 class="story-title">Cement and concrete materials, ready for real work.</h2>
+      <p class="story-eyebrow">Showroom Flow</p>
+      <h2 class="story-title">More space. Better focus. Stronger visual storytelling.</h2>
       <p class="story-text">
-        For slabs, beams, columns, and general works, Astravvanna supports projects with
-        reliable cement supply and smarter material planning.
+        This layout is intentionally spacious so each product category can breathe,
+        command attention, and look premium before a customer even reads details.
       </p>
-      <div class="story-visual visual-cement"></div>
+
+      <div class="story-photo-grid three-up">
+        <div class="photo-slot">Tiles / Surfaces</div>
+        <div class="photo-slot">Roofing Sheets</div>
+        <div class="photo-slot">Paint / Finishes</div>
+      </div>
     </div>
   </section>
 
   <section class="story-panel panel-dark">
     <div class="story-inner reveal">
-      <p class="story-eyebrow">Tools. Equipment. Momentum.</p>
-      <h2 class="story-title">Professional site support beyond materials.</h2>
+      <p class="story-eyebrow">Project-Ready Range</p>
+      <h2 class="story-title">From structure to finishing, one premium supply language.</h2>
       <p class="story-text">
-        Tools, equipment, and site essentials that help teams work faster, cleaner, and with more confidence.
+        Use these placeholders later for pipes, timber, machinery, tools, and site equipment.
+        The flow stays premium even before photos are inserted.
       </p>
-      <div class="story-visual visual-tools"></div>
+
+      <div class="story-photo-grid four-up">
+        <div class="photo-slot">Pipes</div>
+        <div class="photo-slot">Timber</div>
+        <div class="photo-slot">Machinery</div>
+        <div class="photo-slot">Tools</div>
+      </div>
     </div>
   </section>
 
+  <section class="story-panel panel-light">
+    <div class="story-inner reveal">
+      <p class="story-eyebrow">Visual Confidence</p>
+      <h2 class="story-title">A premium gallery for serious construction buyers.</h2>
+      <p class="story-text">
+        This final section can become your signature visual gallery — large images, minimal copy,
+        and a polished feel that supports trust and premium positioning.
+      </p>
+
+      <div class="story-photo-grid mixed-layout">
+        <div class="photo-slot wide">Signature Image</div>
+        <div class="photo-slot">Project Detail</div>
+        <div class="photo-slot">Material Close-up</div>
+      </div>
+    </div>
+  </section>
+
+</section>
 </section>
   <section class="story-panel panel-dark">
     <div class="story-inner reveal">
