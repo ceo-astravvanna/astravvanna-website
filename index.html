@@ -866,7 +866,230 @@
   color:#0b1f33;
   transform:rotateY(180deg);
 }
-  
+
+  /* TRUST SECTION */
+.lux-trust-section{
+  padding:100px 24px;
+  background:#f5f5f7;
+  text-align:center;
+}
+
+.lux-trust-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:24px;
+  max-width:1100px;
+  margin:50px auto 0;
+}
+
+.lux-trust-card{
+  padding:30px;
+  border-radius:20px;
+  background:white;
+  box-shadow:0 20px 50px rgba(0,0,0,.08);
+  transition:.3s;
+}
+
+.lux-trust-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 30px 70px rgba(0,0,0,.12);
+}
+
+.lux-trust-card h3{
+  margin-bottom:10px;
+  color:#0b1f33;
+}
+
+  /* PREMIUM CALCULATOR UPGRADE */
+.calc-shell{
+  background:
+    linear-gradient(180deg, rgba(20,44,71,1) 0%, rgba(11,31,51,1) 100%);
+  border:1px solid rgba(201,162,77,.22);
+  border-radius:28px;
+  padding:32px;
+  box-shadow:0 24px 60px rgba(0,0,0,.22);
+}
+
+.calc-head{
+  text-align:center;
+  max-width:760px;
+  margin:0 auto 26px;
+}
+
+.calc-head .mini{
+  display:inline-block;
+  margin-bottom:12px;
+  padding:8px 14px;
+  border:1px solid rgba(201,162,77,.35);
+  border-radius:999px;
+  background:rgba(201,162,77,.08);
+  color:#e0bf73;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+}
+
+.calc-head h3{
+  margin:0 0 12px;
+  font-size:clamp(30px,4vw,48px);
+  color:white;
+  line-height:1.05;
+}
+
+.calc-head p{
+  margin:0;
+  color:#cfd8e3;
+  line-height:1.8;
+}
+
+.calc-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin:28px 0 24px;
+}
+
+.calc-tab{
+  padding:12px 18px;
+  border:2px solid #c9a24d;
+  background:transparent;
+  color:#c9a24d;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:700;
+  transition:.28s ease;
+}
+
+.calc-tab:hover{
+  transform:translateY(-2px);
+  background:rgba(201,162,77,.08);
+}
+
+.calc-tab.active{
+  background:#c9a24d;
+  color:#0b1f33;
+}
+
+.calc-panel{
+  display:none;
+}
+
+.calc-panel.active{
+  display:block;
+}
+
+.calc-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  margin-bottom:18px;
+}
+
+.calc-field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.calc-field label{
+  font-size:14px;
+  color:#d7e0ea;
+  font-weight:600;
+}
+
+.calc-field input,
+.calc-field select{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:2px solid rgba(201,162,77,.9);
+  background:#0e2035;
+  color:white;
+  outline:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.calc-field input::placeholder{
+  color:#9fb0c2;
+}
+
+.calc-action-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:4px;
+}
+
+.calc-primary-btn,
+.calc-secondary-btn{
+  padding:13px 20px;
+  border-radius:14px;
+  border:none;
+  cursor:pointer;
+  font-weight:800;
+  transition:.28s ease;
+}
+
+.calc-primary-btn{
+  background:linear-gradient(135deg,#d7b25f,#c9a24d);
+  color:#0b1f33;
+  box-shadow:0 14px 28px rgba(201,162,77,.18);
+}
+
+.calc-primary-btn:hover{
+  transform:translateY(-2px);
+}
+
+.calc-secondary-btn{
+  background:rgba(255,255,255,.08);
+  color:white;
+  border:1px solid rgba(255,255,255,.14);
+}
+
+.calc-result{
+  margin-top:16px;
+  padding:18px;
+  border-radius:18px;
+  background:#0e2035;
+  border:1px solid rgba(201,162,77,.28);
+  color:white;
+  line-height:1.85;
+  min-height:84px;
+}
+
+.calc-summary{
+  margin-top:28px;
+  padding:24px;
+  border-radius:22px;
+  background:white;
+  color:#0b1f33;
+  box-shadow:0 18px 40px rgba(0,0,0,.14);
+}
+
+.calc-summary h4{
+  margin:0 0 10px;
+  font-size:24px;
+}
+
+.calc-summary p{
+  margin:0;
+  line-height:1.9;
+}
+
+@media (max-width:768px){
+  .calc-shell{
+    padding:22px;
+    border-radius:22px;
+  }
+
+  .calc-tab{
+    width:100%;
+    text-align:center;
+  }
+}
+ 
 </style>
 </head>
 <body>
@@ -1245,7 +1468,14 @@
         <p>Use the calculators below, then generate a clean material summary and email estimate.</p>
       </div>
     </div>
-
+<div class="calc-head">
+  <div class="mini">Construction Intelligence</div>
+  <h3>Estimate materials with confidence.</h3>
+  <p>
+    Use Astravvanna’s built-in estimator to calculate steel, concrete, columns, pipes,
+    beams, and roofing inputs before requesting supply.
+  </p>
+</div>
     <div class="calc-tabs">
       <button class="calc-tab active" data-tab="calc-rebar">Rebar</button>
       <button class="calc-tab" data-tab="calc-concrete">Concrete</button>
@@ -1297,7 +1527,7 @@
         </div>
       </div>
       <div class="calc-actions">
-        <button class="calc-btn primary" onclick="calcRebar()">Calculate Rebar</button>
+        <button class="calc-primary-btn" onclick="calcRebar()">Calculate Rebar</button>
       </div>
       <div id="rebarResult" class="calc-result">No calculation yet.</div>
     </div>
@@ -1336,7 +1566,7 @@
         </div>
       </div>
       <div class="calc-actions">
-        <button class="calc-btn primary" onclick="calcConcrete()">Calculate Concrete</button>
+        <button class="calc-primary-btn" onclick="calcConcrete()">Calculate Concrete</button>
       </div>
       <div id="concreteResult" class="calc-result">No calculation yet.</div>
     </div>
@@ -1362,7 +1592,7 @@
         </div>
       </div>
       <div class="calc-actions">
-        <button class="calc-btn primary" onclick="calcColumn()">Calculate Column</button>
+        <button class="calc-primary-btn" onclick="calcColumn()">Calculate Column</button>
       </div>
       <div id="columnResult" class="calc-result">No calculation yet.</div>
     </div>
@@ -1388,7 +1618,7 @@
         </div>
       </div>
       <div class="calc-actions">
-        <button class="calc-btn primary" onclick="calcTube()">Calculate Square Tube</button>
+        <button class="calc-primary-btn" onclick="calcTube()">Calculate Square Tube</button>
       </div>
       <div id="tubeResult" class="calc-result">No calculation yet.</div>
     </div>
@@ -1414,7 +1644,7 @@
         </div>
       </div>
       <div class="calc-actions">
-        <button class="calc-btn primary" onclick="calcPipe()">Calculate Pipe</button>
+        <button class="calc-primary-btn" onclick="calcPipe()">Calculate Pipe</button>
       </div>
       <div id="pipeResult" class="calc-result">No calculation yet.</div>
     </div>
@@ -1440,7 +1670,7 @@
         </div>
       </div>
       <div class="calc-actions">
-        <button class="calc-btn primary" onclick="calcBeam()">Estimate Beam Reinforcement</button>
+        <button class="calc-primary-btn" onclick="calcBeam()">Estimate Beam Reinforcement</button>
       </div>
       <div id="beamResult" class="calc-result">No calculation yet.</div>
     </div>
@@ -1462,14 +1692,14 @@
         </div>
       </div>
       <div class="calc-actions">
-        <button class="calc-btn primary" onclick="calcRoof()">Estimate Roof</button>
+        <button class="calc-primary-btn" onclick="calcRoof()">Estimate Roof</button>
       </div>
       <div id="roofResult" class="calc-result">No calculation yet.</div>
     </div>
 
     <div class="calc-actions" style="margin-top:26px">
-      <button class="calc-btn secondary" onclick="generateSummary()">Generate Material Summary</button>
-      <button class="calc-btn secondary" onclick="sendEstimate()">Send Estimate</button>
+      <button class="calc-secondary-btn" onclick="generateSummary()">Generate Material Summary</button>
+      <button class="calc-secondary-btn" onclick="sendEstimate()">Send Estimate</button>
       <button class="calc-btn ghost" onclick="buildQuote()">Build Printable Quote</button>
       <button class="calc-btn ghost" onclick="window.print()">Download / Print Quote</button>
     </div>
